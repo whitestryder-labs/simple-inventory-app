@@ -1,9 +1,9 @@
-/backend/inventory-web-api/.metadata
+/backend/inventory-web-api/.metadata/*
 /backend/inventory-web-api/.classpath
 /backend/inventory-web-api/.project
 /backend/inventory-web-api/.idea
-/backend/inventory-web-api/RemoteSystemsTempFiles
-/backend/inventory-web-api/.settings
-/backend/inventory-web-api/.gradle
-/backend/inventory-web-api/build
-/backend/inventory-web-api/bin
+/backend/inventory-web-api/RemoteSystemsTempFiles/*
+/backend/inventory-web-api/.settings/*
+/backend/inventory-web-api/.gradle/*
+/backend/inventory-web-api/build/*
+/backend/inventory-web-api/bin/*
