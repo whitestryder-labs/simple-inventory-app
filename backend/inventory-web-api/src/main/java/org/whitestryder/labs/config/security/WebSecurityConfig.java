@@ -68,12 +68,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	
 	        // Allow anonymous resource requests
 	        .antMatchers(HttpMethod.GET, "/health").permitAll()
-	
+	        
 	        // Allow anonymous logins
 	        .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
 	
 	        // Allow access to list inventory
-	        .antMatchers(HttpMethod.GET, "/api/inventory").permitAll()
+	        .antMatchers(HttpMethod.GET, "/api/inventory-item").permitAll()
 	        
 	        // All other request need to be authenticated
 	        .anyRequest().authenticated().and()

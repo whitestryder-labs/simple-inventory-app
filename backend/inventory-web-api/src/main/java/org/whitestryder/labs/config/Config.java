@@ -3,6 +3,7 @@ package org.whitestryder.labs.config;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -10,6 +11,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivity;
+import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivityImpl;
+import org.whitestryder.labs.app.support.InventoryItemRepository;
 import org.whitestryder.labs.config.security.auth.CustomAuthenticationProvider;
 import org.whitestryder.labs.config.security.auth.EntryPointUnauthorizedHandler;
 import org.whitestryder.labs.config.security.auth.UserService;
@@ -22,6 +26,12 @@ import org.whitestryder.labs.config.security.auth.UserService;
 @Configuration
 @Order(1)
 public class Config {
+	
+	@Autowired
+	private InventoryItemRepository inventoryItemRepository;
+
+
+	
 	
 	@Bean
 	public UserService userService(){
@@ -48,4 +58,16 @@ public class Config {
 		CustomAuthenticationProvider provider = new CustomAuthenticationProvider(userService);
 		return provider;
 	}
+	
+	
+	
+	
+	@Bean
+	public CreateInventoryItemActivity createInventoryItemActivity(){
+		return new CreateInventoryItemActivityImpl(inventoryItemRepository);
+	}
+
+
+
+
 }

@@ -5,3 +5,10 @@ debug: false
 
 logging:
   level.org.springframework.security: ERROR
+  level.org.hibernate: DEBUG
+  
+spring:
+  datasource:
+    url: jdbc:h2:file:${user.home}/simple_inventory_db_instance_h2/INVENTORY_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE
+    username: admin
+    password: admin321
