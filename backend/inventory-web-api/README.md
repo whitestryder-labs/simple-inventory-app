@@ -1,4 +1,5 @@
-#### A simple web-based inventory service that exposes a REST API.  Allows any anonymous user to view the inventory and view inventory items, and authenticated users can buy items from the inventory.
+#inventory-web-api
+A simple web-based inventory service that exposes a REST API.  Allows any anonymous user to view the inventory and view inventory items, and authenticated users can buy items from the inventory.
  
  
 
@@ -27,19 +28,20 @@
 
  
 ###3. How to run:
-		3.1. Using the Gradle Wrapper
-			3.1.1. cmdline> ./gradlew bootRun
-		3.2. Without using the Gradle Wrapper
-			3.2.1. cmdline> gradle bootRun
+      1. Using the Gradle Wrapper
+         1. cmdline> ./gradlew bootRun
+      2. Without using the Gradle Wrapper
+         1. cmdline> gradle bootRun
 
 	
 ###4. How to use
-		4.1. REST API
-			4.1.1. Check if service is available:		GET /health
-			4.1.2. Authenticate:						GET /auth/token
-			4.1.3. Get the inventory listing:			GET /api/inventory
-			4.1.4. get the inventory item with id={id}:	GET /api/inventory/{id}
-			4.1.5. Buy an item from the inventory:		GET /api/inventory/{id}/purchase	(authorized uses only)
+      1. REST API
+         1. Check if service is available:		GET /health
+         3. Authenticate:				GET /auth/token
+         4. Get the inventory listing:			GET /api/inventory-item
+         5. Get the inventory item with id={id}:	GET /api/inventory-item/{id}
+	 6. Add an item to the inventory:		GET /api/inventory-item/{id}/purchase	(authorized users only)
+         7. Buy an item from the inventory:		GET /api/inventory-item/{id}/purchase	(authorized users only)
 
 		
 ### 5. How to setup development in Eclipse
