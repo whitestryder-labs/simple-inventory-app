@@ -37,14 +37,14 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
 ###4. How to use
       1. REST API
       
-| Operation                             | HTTP Method   | Relative URL Path                    | Requires Authentication |
-| --------------------------------------|:-------------:| ------------------------------------:|------------------------:|
-| Check if service is available         | GET           | /health                              | No                      |
-| Create an authentication token (login)| POST          | /auth/token                          | Yes                     |
-| Get the inventory listing             | GET           | /api/inventory-item                  | No                      |
-| Add an item to the inventory          | POST          | /api/inventory-item                  | No                      |
-| Get the inventory item with id={id}   | GET           | /api/inventory-item/{id}             | No                      |
-| Buy an item from the inventory        | POST          | /api/inventory-item/{id}/purchase    | Yes                     |
+| Operation | HTTP Method | Relative URL Path  | Requires Authentication |
+|:---------:|:-------------:| ------------------:|------------------------:|
+| Check if service is available         | GET| /health | No |
+| Create an authentication token (login)| POST | /auth/token                          | Yes                     |
+| Get the inventory listing             | GET | /api/inventory-item                  | No                      |
+| Add an item to the inventory          | POST | /api/inventory-item                  | No                      |
+| Get the inventory item with id={id}   | GET | /api/inventory-item/{id}             | No                      |
+| Buy an item from the inventory        | POST | /api/inventory-item/{id}/purchase    | Yes                     |
 
 		
 ### 5. How to setup development in Eclipse
