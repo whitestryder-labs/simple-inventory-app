@@ -36,12 +36,15 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
 	
 ###4. How to use
       1. REST API
-         1. Check if service is available:		GET /health
-         3. Authenticate:				GET /auth/token
-         4. Get the inventory listing:			GET /api/inventory-item
-         5. Get the inventory item with id={id}:	GET /api/inventory-item/{id}
-	 6. Add an item to the inventory:		GET /api/inventory-item/{id}/purchase	(authorized users only)
-         7. Buy an item from the inventory:		GET /api/inventory-item/{id}/purchase	(authorized users only)
+      
+| Operation                             | HTTP Method   | Relative URL Path                    | Requires Authentication |
+| --------------------------------------|:-------------:| ------------------------------------:|------------------------:|
+| Check if service is available         | GET           | /health                              | No                      |
+| Create an authentication token (login)| POST          | /auth/token                          | Yes                     |
+| Get the inventory listing             | GET           | /api/inventory-item                  | No                      |
+| Add an item to the inventory          | POST          | /api/inventory-item                  | No                      |
+| Get the inventory item with id={id}   | GET           | /api/inventory-item/{id}             | No                      |
+| Buy an item from the inventory        | POST          | /api/inventory-item/{id}/purchase    | Yes                     |
 
 		
 ### 5. How to setup development in Eclipse
