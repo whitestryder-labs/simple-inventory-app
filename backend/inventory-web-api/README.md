@@ -36,8 +36,8 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
 ###4. How to use
 1. REST API
       
-Operation | HTTP Method | Relative URL Path  | Requires Authentication |
----------:|:-------------:| ------------------:|------------------------:|
+|Operation | HTTP Method | Relative URL Path  | Requires Authentication |
+|:---------:|:-------------|:------------------|:------------------------|
 Check if service is available |GET| /health | No |
 Get the inventory listing |GET| /api/inventory-item | No |
 Add an item to the inventory |POST| /api/inventory-item | No |
