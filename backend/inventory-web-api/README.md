@@ -2,32 +2,31 @@
  
  
 
- # Table of Contents:
-   1. How to build
-   2. How to test
-   3. How to run
-   4. How to use
-   5. How to setup development in Eclipse
-   6. How to setup development in IDEA IntelliJ
-   
-   Appendix A. Design Decisions
+# Table of Contents:
+## 1. How to build
+## 2. How to test
+## 3. How to run
+## 4. How to use
+## 5. How to setup development in Eclipse
+## 6. How to setup development in IDEA IntelliJ
+## Appendix A. Design Decisions
 
 
- ##1. How to build:
+##1. How to build:
 		1.1. Using the Gradle Wrapper
 			1.1.1. cmdline> ./gradlew build
 		1.2. Without using the Gradle Wrapper
 			1.2.1. Download and install Gradle 2.3+ manually
 			1.2.1. cmdline> gradle build
 
- ##2. How to test:
+##2. How to test:
 		2.1. Using the Gradle Wrapper
 			2.1.1. cmdline> ./gradlew test
 		2.2. Without using the Gradle Wrapper
 			2.2.1. cmdline> gradle test
 
  
- ##3. How to run:
+##3. How to run:
 		3.1. Using the Gradle Wrapper
 			3.1.1. cmdline> ./gradlew bootRun
 		3.2. Without using the Gradle Wrapper
@@ -43,12 +42,12 @@
 			4.1.5. Buy an item from the inventory:		GET /api/inventory/{id}/purchase	(authorized uses only)
 
 		
- v5. How to setup development in Eclipse
+## 5. How to setup development in Eclipse
 		5.1. Install "Buildship Gradle Integration for Eclipse" from Eclipse Marketplace
 		5.2. open project in Eclipse as "Existing Gradle Project"
  
 
- ##6. How to setup development in IDEA IntelliJ
+##6. How to setup development in IDEA IntelliJ
    		6.1. cmdline> gradle idea
 		6.2. open project in IntelliJ
 		
