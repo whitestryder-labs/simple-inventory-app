@@ -2,14 +2,14 @@
  
  
 
-# Table of Contents:
-### 1. [How to build]
-## 2. How to test
-## 3. How to run
-## 4. How to use
-## 5. How to setup development in Eclipse
-## 6. How to setup development in IDEA IntelliJ
-## Appendix A. Design Decisions
+## Table of Contents:
+### 1. How to build
+### 2. How to test
+### 3. How to run
+### 4. How to use
+### 5. How to setup development in Eclipse
+### 6. How to setup development in IDEA IntelliJ
+### Appendix A. Design Decisions
 
 
 ###1. How to build:
@@ -20,10 +20,10 @@
    2. cmdline> gradle build
 
 ###2. How to test:
-		2.1. Using the Gradle Wrapper
-			2.1.1. cmdline> ./gradlew test
-		2.2. Without using the Gradle Wrapper
-			2.2.1. cmdline> gradle test
+      1. Using the Gradle Wrapper
+	 1. cmdline> ./gradlew test
+      2. Without using the Gradle Wrapper
+         1. cmdline> gradle test
 
  
 ###3. How to run:
