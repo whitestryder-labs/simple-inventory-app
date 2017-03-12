@@ -13,11 +13,11 @@
 
 
 ##1. How to build:
-		1.1. Using the Gradle Wrapper
-			1.1.1. cmdline> ./gradlew build
-		1.2. Without using the Gradle Wrapper
-			1.2.1. Download and install Gradle 2.3+ manually
-			1.2.1. cmdline> gradle build
+- Using the Gradle Wrapper
+  - cmdline> ./gradlew build
+- Without using the Gradle Wrapper
+  - Download and install Gradle 2.3+ manually
+  - cmdline> gradle build
 
 ##2. How to test:
 		2.1. Using the Gradle Wrapper
@@ -53,7 +53,7 @@
 		
  
 
- ##Appendix A. Design Decisions:
+##Appendix A. Design Decisions:
 	A.1. Language: Java 8 - a good multi-purpose modern language
 	A.2. Frameworks:
 		A.2.1 Spring Boot - provides a good application framework for cross-cutting application concerns
