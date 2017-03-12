@@ -1,13 +1,16 @@
- ==============================================================================
- Project: inventory-web-api
+  inventory-web-api
+  ==============================================================================
  
- Description: A simple web-based inventory service that exposes a REST API.  Allows any anonymous user to view the inventory and view inventory items, and authenticated users can buy items from the inventory.
+ Description:
+ ------------
+ A simple web-based inventory service that exposes a REST API.  Allows any anonymous user to view the inventory and view inventory items, and authenticated users can buy items from the inventory.
  
  README Author: Stephen Brooke
  Date: Mar 09, 2017
- ==============================================================================
+ 
 
  Table of Contents:
+ ------------------
    1. How to build
    2. How to test
    3. How to run
