@@ -14,11 +14,11 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
 
 
 ###1. How to build:
-      1. Build using the Gradle Wrapper
-         - cmdline> ./gradlew build
-      2. Build Without using the Gradle Wrapper
-         - Download and install Gradle 2.3+ manually
-         - cmdline> gradle build
+1. Build using the Gradle Wrapper
+   - cmdline> ./gradlew build
+2. Build Without using the Gradle Wrapper
+   - Download and install Gradle 2.3+ manually
+   - cmdline> gradle build
 
 ###2. How to test:
       1. Using the Gradle Wrapper
