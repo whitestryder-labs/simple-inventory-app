@@ -1,16 +1,10 @@
-  inventory-web-api
-  ==============================================================================
- 
- Description:
- ------------
- A simple web-based inventory service that exposes a REST API.  Allows any anonymous user to view the inventory and view inventory items, and authenticated users can buy items from the inventory.
+A simple web-based inventory service that exposes a REST API.  Allows any anonymous user to view the inventory and view inventory items, and authenticated users can buy items from the inventory.
  
  README Author: Stephen Brooke
  Date: Mar 09, 2017
  
 
- Table of Contents:
- ------------------
+ #Table of Contents:
    1. How to build
    2. How to test
    3. How to run
@@ -20,9 +14,8 @@
    
    Appendix A. Design Decisions
 
- ==============================================================================
 
- 1. How to build:
+ #1. How to build:
 		1.1. Using the Gradle Wrapper
 			1.1.1. cmdline> ./gradlew build
 		1.2. Without using the Gradle Wrapper
