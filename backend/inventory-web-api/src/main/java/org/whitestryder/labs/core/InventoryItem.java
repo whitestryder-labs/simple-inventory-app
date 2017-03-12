@@ -17,6 +17,10 @@ import com.google.common.base.Strings;
 @Entity
 public class InventoryItem {
 
+	public static int MaxNameLength = 64;
+	public static int MaxDescLength = 256;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -61,6 +65,8 @@ public class InventoryItem {
 	
 	protected void setName(String name) {
 		Preconditions.checkArgument(!Strings.isNullOrEmpty(name), "InventoryItem name must not be null or empty");
+		Preconditions.checkArgument(name.length() <= MaxNameLength, 
+				String.format("InventoryItem name must be <= %d characters in length", MaxNameLength));
 		this.name = name;
 	}
 	
@@ -71,6 +77,8 @@ public class InventoryItem {
 	
 	
 	protected void setDescription(String description) {
+		Preconditions.checkArgument(name.length() <= MaxDescLength,
+				String.format("InventoryItem name must be <= %s characters in length", MaxDescLength));
 		this.description = description;
 	}
 	
@@ -92,7 +100,7 @@ public class InventoryItem {
 	
 	
 	protected void setQuantityInStock(int quantityInStock) {
-		Preconditions.checkArgument(price >= 0, "InventoryItem quantityInStock must be >= 0");
+		Preconditions.checkArgument(quantityInStock >= 0, "InventoryItem quantityInStock must be >= 0");
 		this.quantityInStock = quantityInStock;
 	}
 	
