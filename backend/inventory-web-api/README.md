@@ -12,7 +12,7 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
 ### 6. How to setup development in IDEA IntelliJ
 ### Appendix A. Design Decisions
 
-
+----------------------------------------------------------------------
 ###1. How to build:
 1. Build using the Gradle Wrapper
    - cmdline> ./gradlew build
