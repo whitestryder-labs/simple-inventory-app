@@ -11,9 +11,12 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivity;
-import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivityImpl;
+import org.whitestryder.labs.app.activity.inventory.CreateInventoryItem;
+import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemImpl;
+import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItem;
+import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItemImpl;
 import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
+import org.whitestryder.labs.app.support.InventoryItemAccessRepository;
 import org.whitestryder.labs.app.support.InventoryItemQuery;
 import org.whitestryder.labs.app.support.InventoryItemRepository;
 import org.whitestryder.labs.config.security.auth.CustomAuthenticationProvider;
@@ -34,6 +37,9 @@ public class Config {
 
 	@Autowired
 	private InventoryItemQuery inventoryItemQuery;
+	
+	@Autowired
+	private InventoryItemAccessRepository inventoryItemAccessRepository;
 	
 	@Autowired
 	private AuthenticatedUserContextService authUserContextService;
@@ -66,9 +72,16 @@ public class Config {
 	
 	
 	@Bean
-	public CreateInventoryItemActivity createInventoryItemActivity(){
-		return new CreateInventoryItemActivityImpl(
+	public CreateInventoryItem createInventoryItem(){
+		return new CreateInventoryItemImpl(
 				inventoryItemRepository, inventoryItemQuery, authUserContextService);
+	}
+	
+	
+	@Bean
+	public GetSingleInventoryItem getSingleInventoryItem(){
+		return new GetSingleInventoryItemImpl(
+				inventoryItemAccessRepository, inventoryItemQuery);
 	}
 	
 

@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.whitestryder.labs.api.model.InventoryItemRepresentation;
 import org.whitestryder.labs.api.model.InventoryItems;
-import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivity;
+import org.whitestryder.labs.app.activity.inventory.CreateInventoryItem;
+import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItem;
 import org.whitestryder.labs.app.support.ApplicationException;
 import org.whitestryder.labs.app.support.InventoryItemQuery;
 import org.whitestryder.labs.core.InventoryItem;
@@ -32,7 +33,9 @@ public class InventoryController {
 
 	
 	/** The create inventory item activity. */
-	private CreateInventoryItemActivity createInventoryItemActivity;
+	private CreateInventoryItem createInventoryItem;
+	
+	private GetSingleInventoryItem getSingleInventoryItem;
     
     /** The inventory item query. */
     private InventoryItemQuery inventoryItemQuery;
@@ -44,13 +47,16 @@ public class InventoryController {
 	 *
 	 * @param createInventoryItemActivity the create inventory item activity
 	 * @param inventoryItemQuery the inventory item query
+	 * @param getSingleInventoryItem the get single inventory item
 	 */
 	@Autowired
 	public InventoryController(
-			CreateInventoryItemActivity createInventoryItemActivity,
-			InventoryItemQuery inventoryItemQuery){
-		this.createInventoryItemActivity = createInventoryItemActivity;
+			CreateInventoryItem createInventoryItemActivity,
+			InventoryItemQuery inventoryItemQuery,
+			GetSingleInventoryItem getSingleInventoryItem){
+		this.createInventoryItem = createInventoryItemActivity;
 		this.inventoryItemQuery = inventoryItemQuery;
+		this.getSingleInventoryItem = getSingleInventoryItem;
 	}
 	
 	
@@ -113,16 +119,7 @@ public class InventoryController {
     @RequestMapping(path = "/api/inventory-item/{refId}", method = RequestMethod.GET)
     public ResponseEntity<InventoryItemRepresentation> getInventoryItem(@PathVariable String refId) throws ApplicationException {
         
-    	List<InventoryItem> items = inventoryItemQuery.findByExternalReferenceId(refId);
-    	
-    	if (items.isEmpty()){
-    		ResponseEntity.status(HttpStatus.NOT_FOUND);
-    	} else if (items.size() > 1){
-    		throw new ApplicationException(
-    				String.format("More than one item with the refId %s was found!", refId));
-    	}
-    	
-    	InventoryItem item = items.get(0);
+    	InventoryItem item = getSingleInventoryItem.execute(refId);
     	
     	InventoryItemRepresentation rep = 
 				new InventoryItemRepresentation(
@@ -152,7 +149,7 @@ public class InventoryController {
     public ResponseEntity<?> createInventoryItem(
     		@RequestBody InventoryItem inventoryItem) throws ApplicationException {
     	
-    	InventoryItem itemCreated = createInventoryItemActivity.execute(inventoryItem);
+    	InventoryItem itemCreated = createInventoryItem.execute(inventoryItem);
     	
     	String locationUri = 
     			linkTo(methodOn(InventoryController.class).getInventoryItem(itemCreated.getExternalReferenceId())).toUri().toString();

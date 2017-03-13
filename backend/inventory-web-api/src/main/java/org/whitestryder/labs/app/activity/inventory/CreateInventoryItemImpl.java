@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.whitestryder.labs.app.support.ApplicationConflictException;
 import org.whitestryder.labs.app.support.ApplicationException;
 import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
@@ -14,14 +13,14 @@ import org.whitestryder.labs.app.support.UserContext;
 import org.whitestryder.labs.core.InventoryItem;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Provides a way to create an inventory item for authenticated users.
  */
-public class CreateInventoryItemActivityImpl implements CreateInventoryItemActivity {
+public class CreateInventoryItemImpl implements CreateInventoryItem {
 
 	/** The log. */
-	private static Logger LOG = LoggerFactory.getLogger(CreateInventoryItemActivityImpl.class);
+	private static Logger LOG = LoggerFactory.getLogger(CreateInventoryItemImpl.class);
 
 	/** The repository. */
 	private InventoryItemRepository repository;
@@ -40,7 +39,7 @@ public class CreateInventoryItemActivityImpl implements CreateInventoryItemActiv
 	 * @param query the query
 	 * @param userContextService the user context service
 	 */
-	public CreateInventoryItemActivityImpl(InventoryItemRepository repository,
+	public CreateInventoryItemImpl(InventoryItemRepository repository,
 			InventoryItemQuery query,
 			AuthenticatedUserContextService userContextService){
 		this.repository = repository;

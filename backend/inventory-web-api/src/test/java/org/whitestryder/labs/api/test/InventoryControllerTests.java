@@ -1,6 +1,7 @@
 package org.whitestryder.labs.api.test;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,7 +16,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.whitestryder.labs.api.model.InventoryItemRepresentation;
 import org.whitestryder.labs.api.model.InventoryItems;
+import org.whitestryder.labs.app.support.InventoryItemAccessQuery;
+import org.whitestryder.labs.core.InventoryItemAccess;
 import org.whitestryder.labs.support.MockWebSecurityTestConfig;
 
 
@@ -32,6 +36,9 @@ public class InventoryControllerTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
+    
+    @Autowired
+    private InventoryItemAccessQuery query;
 
     
     @Before
@@ -64,7 +71,7 @@ public class InventoryControllerTests {
      */
     @Test
     public void itShouldListInventoryItems() {
-    	InventoryItemForm itemForm1 = new InventoryItemForm("a", "b", 1, 2);
+    	InventoryItemForm itemForm1 = new InventoryItemForm("aa", "b", 1, 2);
     	ResponseEntity<String> responseFromCreate = 
     			restTemplate.postForEntity("/api/inventory-item", itemForm1, String.class);
     	
@@ -80,6 +87,30 @@ public class InventoryControllerTests {
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assert.assertNotNull(items);
         Assert.assertEquals(1, items.getItems().size());
+    }
+    
+    
+    @Test
+    public void itShouldGetSingleInventoryItemAndRecordAccess() {
+    	InventoryItemForm itemForm1 = new InventoryItemForm("a", "b", 1, 2);
+    	ResponseEntity<String> responseFromCreate = 
+    			restTemplate.postForEntity("/api/inventory-item", itemForm1, String.class);
+    	
+        Assert.assertEquals(HttpStatus.CREATED,  responseFromCreate.getStatusCode());
+        String locationHeader = responseFromCreate.getHeaders().getLocation().toString();
+        Assert.assertNotNull(locationHeader);
+        
+        ResponseEntity<InventoryItemRepresentation> responseEntity =
+        	restTemplate.getForEntity(locationHeader, InventoryItemRepresentation.class);
+      
+        InventoryItemRepresentation item = responseEntity.getBody();
+        
+        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assert.assertNotNull(item);
+        
+        List<InventoryItemAccess> itemAccesses = query.findByInventoryItemRefId(item.getExternalReferenceId());
+        
+        Assert.assertEquals(1, itemAccesses.size());
     }
     
     

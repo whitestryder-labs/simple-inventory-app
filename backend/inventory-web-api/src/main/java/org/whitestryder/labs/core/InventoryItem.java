@@ -247,6 +247,16 @@ public class InventoryItem {
 						accessedBy);
 		return itemAccess;
 	}
+
+
+	/**
+	 * Creates the access record with accessedBy 'anonymous'.
+	 *
+	 * @return the inventory item access
+	 */
+	public InventoryItemAccess createAccessRecord() {
+		return createAccessRecord("anonymous");
+	}
 	
 	
 	
