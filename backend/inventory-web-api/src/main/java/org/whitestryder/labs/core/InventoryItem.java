@@ -8,15 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.beans.factory.annotation.Required;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 
 
 
-// TODO: Auto-generated Javadoc
 /**
  * Encapsulates an item in a shop inventory.
  * @author steve
@@ -30,6 +27,9 @@ public class InventoryItem {
 	
 	/** The Max desc length. */
 	public static int MaxDescLength = 256;
+	
+	/** The Max ext ref id length. */
+	public static int MaxExtRefIdLength = 64;
 	
 	
 	/** The id (internal use only). */
@@ -211,6 +211,8 @@ public class InventoryItem {
 	 */
 	protected void setExternalReferenceId(String externalReferenceId) {
 		Preconditions.checkArgument(!Strings.isNullOrEmpty(externalReferenceId), "InventoryItem 'externalReferenceId' must have a value");
+		Preconditions.checkArgument(externalReferenceId.length() <= MaxExtRefIdLength,
+				String.format("InventoryItem 'externalReferenceId' must be <= %s characters in length", MaxExtRefIdLength));
 		this.externalReferenceId = externalReferenceId;
 	}
 
@@ -229,6 +231,21 @@ public class InventoryItem {
 		return "InventoryItem [getId()=" + getId() + ", getName()=" + getName() + ", getDescription()="
 				+ getDescription() + ", getPrice()=" + getPrice() + ", getQuantityInStock()=" + getQuantityInStock()
 				+ ", getExternalReferenceId()=" + getExternalReferenceId() + "]";
+	}
+
+
+	/**
+	 * Creates the access record.
+	 *
+	 * @param accessedBy the accessed by
+	 * @return the inventory item access
+	 */
+	public InventoryItemAccess createAccessRecord(String accessedBy) {
+		InventoryItemAccess itemAccess = 
+				new InventoryItemAccess(
+						this.externalReferenceId,
+						accessedBy);
+		return itemAccess;
 	}
 	
 	

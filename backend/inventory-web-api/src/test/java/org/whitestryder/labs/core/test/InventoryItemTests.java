@@ -1,11 +1,11 @@
 package org.whitestryder.labs.core.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.whitestryder.labs.core.InventoryItem;
-
-import org.junit.Assert;
+import org.whitestryder.labs.core.InventoryItemAccess;
 
 
 
@@ -119,6 +119,9 @@ public class InventoryItemTests {
 	}
 	
 	
+	/**
+	 * It should prevent buying of item if none in stock.
+	 */
 	@Test(expected = IllegalStateException.class)
 	public void itShouldPreventBuyingOfItemIfNoneInStock(){
 		int testItemQuantity = 1;
@@ -126,6 +129,27 @@ public class InventoryItemTests {
 			
 		item.buy();	//Buy the last item	
 		item.buy(); //This operation will not be allowed.
+	}
+	
+	
+	/**
+	 * It should construct inventory item access record.
+	 */
+	@Test
+	public void itShouldConstructInventoryItemAccessRecord(){
+		String testItemName = "Umbro bag";
+		String testItemDesc = "Nice sports bag with lots of pockets";
+		int testItemPrice = 45;
+		int testItemQuantity = 5;
+		InventoryItem item = new InventoryItem(testItemName, testItemDesc, testItemPrice, testItemQuantity);
+		
+		String testAccessedBy = "testuser";
+		
+		InventoryItemAccess itemAccess = item.createAccessRecord(testAccessedBy);
+		
+		Assert.assertEquals(item.getExternalReferenceId(), itemAccess.getInventoryItemRefId());
+		Assert.assertEquals(testAccessedBy, itemAccess.getAccessedBy());
+		Assert.assertNotNull(itemAccess.getDateAccessed());
 	}
 	
 }

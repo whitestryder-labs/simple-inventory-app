@@ -2,8 +2,6 @@ package org.whitestryder.labs.app.test;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,8 +29,6 @@ public class InventoryItemQueryTests {
 	@Autowired
 	private InventoryItemRepository repository;
 	
-	@Autowired
-	private EntityManager entityManager;
 	
 	
 	/**
@@ -62,6 +58,7 @@ public class InventoryItemQueryTests {
 		
 		Assert.assertNotNull(itemsFound);
 		Assert.assertEquals(1,  itemsFound.size());
+		Assert.assertEquals(testItemName, itemsFound.get(0).getName());
 	}
 	
 	
@@ -82,4 +79,26 @@ public class InventoryItemQueryTests {
 		Assert.assertEquals(0,  itemsFound.size());
 	}
 	
+	
+	
+
+	/**
+	 * It should find by external reference id.
+	 */
+	@Test
+	public void itShouldFindByExternalReferenceId(){	
+		String testItemName = "Umbro Soccer Ball";
+		
+		InventoryItem testItem = new InventoryItem(testItemName, "Umbro Soccer Official FIFA Approved Match Ball", 150, 10);
+		
+		String testExtRefId = testItem.getExternalReferenceId();
+		
+		repository.save(testItem);
+		
+		List<InventoryItem> itemsFound = query.findByExternalReferenceId( testExtRefId );
+		
+		Assert.assertNotNull(itemsFound);
+		Assert.assertEquals(1,  itemsFound.size());
+		Assert.assertEquals(testExtRefId, itemsFound.get(0).getExternalReferenceId());
+	}
 }
