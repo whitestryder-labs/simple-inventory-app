@@ -81,5 +81,4 @@ public class InventoryItemQueryTests {
 		Assert.assertEquals(0,  itemsFound.size());
 	}
 	
-	
 }

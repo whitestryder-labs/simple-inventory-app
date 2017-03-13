@@ -1,5 +1,7 @@
 package org.whitestryder.labs.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.whitestryder.labs.api.model.InventoryItems;
 import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivity;
+import org.whitestryder.labs.app.support.ApplicationException;
+import org.whitestryder.labs.app.support.InventoryItemQuery;
 import org.whitestryder.labs.core.InventoryItem;
 
 @RestController
@@ -16,12 +21,15 @@ public class InventoryController {
 
 	
 	private CreateInventoryItemActivity createInventoryItemActivity;
-    
+    private InventoryItemQuery inventoryItemQuery;
 	
 	
 	@Autowired
-	public InventoryController(CreateInventoryItemActivity createInventoryItemActivity){
+	public InventoryController(
+			CreateInventoryItemActivity createInventoryItemActivity,
+			InventoryItemQuery inventoryItemQuery){
 		this.createInventoryItemActivity = createInventoryItemActivity;
+		this.inventoryItemQuery = inventoryItemQuery;
 	}
 	
 	
@@ -31,23 +39,31 @@ public class InventoryController {
     }
     
     @RequestMapping(path = "/api/inventory-item", method = RequestMethod.GET)
-    public String getInventory() {
-        return "Inventory TBD";
+    public ResponseEntity<InventoryItems> getInventoryItems() {
+    	InventoryItems inventoryItems = 
+    			new InventoryItems(inventoryItemQuery.findAll());
+    	
+    	return ResponseEntity
+    				.status(HttpStatus.OK)
+    				.body(inventoryItems);
     }
     
-    @RequestMapping(path = "/api/inventory-item/{id}", method = RequestMethod.GET)
-    public String getInventoryItem(@PathVariable String id) {
-        return "Inventory Item " + id;
+    @RequestMapping(path = "/api/inventory-item/{refId}", method = RequestMethod.GET)
+    public String getInventoryItem(@PathVariable String refId) {
+        return "Inventory Item " + refId;
     }
     
     
     
     @RequestMapping(path = "/api/inventory-item", method = RequestMethod.POST)
     public ResponseEntity<?> createInventoryItem(
-    		@RequestBody InventoryItem inventoryItem) {
+    		@RequestBody InventoryItem inventoryItem) throws ApplicationException {
     	
-    	createInventoryItemActivity.execute(inventoryItem);
+    	InventoryItem itemCreated = createInventoryItemActivity.execute(inventoryItem);
     	
-        return ResponseEntity.status(HttpStatus.CREATED).body("Created");
+        return ResponseEntity
+        		.status(HttpStatus.CREATED)
+				.header("Location", "http://localhost:8181/api/inventory-item/" + itemCreated.getExternalReferenceId())
+        		.body("Created");
     }
 }
