@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.whitestryder.labs.api.model.InventoryItems;
 import org.whitestryder.labs.support.MockWebSecurityTestConfig;
@@ -26,6 +27,7 @@ import org.whitestryder.labs.support.MockWebSecurityTestConfig;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(MockWebSecurityTestConfig.class)
+@TestPropertySource(locations="classpath:test.properties")
 public class InventoryControllerTests {
 
     @Autowired

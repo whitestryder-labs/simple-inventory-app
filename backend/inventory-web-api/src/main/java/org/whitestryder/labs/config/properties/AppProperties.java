@@ -24,7 +24,7 @@ public class AppProperties {
 
 	/** The token TTL seconds. */
 	private int tokenTTLSeconds = 600;	//default 10 minute TTL, <= 0 means it will never expire
-
+	
 	/**
 	 * Gets the token TTL seconds.
 	 *

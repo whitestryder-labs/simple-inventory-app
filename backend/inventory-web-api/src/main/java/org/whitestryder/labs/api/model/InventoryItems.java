@@ -1,24 +1,18 @@
 package org.whitestryder.labs.api.model;
 
-import java.io.Serializable;
 import java.util.List;
 
-import org.whitestryder.labs.core.InventoryItem;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
  * Provide a wrapper class that encapsulate a list of InventoryItem
  */
-public class InventoryItems implements Serializable {
+public class InventoryItems extends ResourceSupport {
 	
-	
-	/**
-	 * generated
-	 */
-	private static final long serialVersionUID = 8885063472441586181L;
 	
 	
 	/** The items. */
-	private List<InventoryItem> items;
+	private List<InventoryItemRepresentation> items;
 	
 	
 	/**
@@ -35,7 +29,7 @@ public class InventoryItems implements Serializable {
 	 *
 	 * @param items the items
 	 */
-	public InventoryItems(List<InventoryItem> items) {
+	public InventoryItems(List<InventoryItemRepresentation> items) {
 		super();
 		this.items = items;
 	}
@@ -48,7 +42,7 @@ public class InventoryItems implements Serializable {
 	 *
 	 * @return the items
 	 */
-	public List<InventoryItem> getItems() {
+	public List<InventoryItemRepresentation> getItems() {
 		return items;
 	}
 
@@ -58,7 +52,7 @@ public class InventoryItems implements Serializable {
 	 *
 	 * @param items the new items
 	 */
-	public void setItems(List<InventoryItem> items) {
+	public void setItems(List<InventoryItemRepresentation> items) {
 		this.items = items;
 	}
 	

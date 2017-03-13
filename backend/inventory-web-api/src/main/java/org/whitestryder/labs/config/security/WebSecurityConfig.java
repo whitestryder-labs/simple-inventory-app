@@ -83,10 +83,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        // Allow anonymous logins
 	        .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
 	
-	        // Allow access to list inventory
+	        // Allow access to list inventory and individual inventory items
 	        .antMatchers(HttpMethod.GET, "/api/inventory-item").permitAll()
+	        .antMatchers(HttpMethod.GET, "/api/inventory-item/**/*").permitAll()
 	        
-	        // All other request need to be authenticated
+	        // All other requests need to be authenticated
 	        .anyRequest().authenticated().and()
 		        
 	        // Custom Token based authentication based on the header previously given to the client

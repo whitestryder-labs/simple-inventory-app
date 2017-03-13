@@ -31,5 +31,5 @@ hibernate:
   
 app:
   property:
-    tokenTTLSeconds: 30
+    #tokenTTLSeconds: 30
     

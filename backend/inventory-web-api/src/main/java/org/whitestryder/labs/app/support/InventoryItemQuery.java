@@ -14,5 +14,7 @@ public interface InventoryItemQuery extends PagingAndSortingRepository<Inventory
 	List<InventoryItem> findByName(@Param("name") String name);
 	
 	List<InventoryItem> findAll();
+	
+	List<InventoryItem> findByExternalReferenceId(String externalReferenceId);
 
 }
