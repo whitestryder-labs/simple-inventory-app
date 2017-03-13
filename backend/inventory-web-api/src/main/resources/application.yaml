@@ -28,3 +28,8 @@ flyway:
 hibernate:
   show_sql: true
   format_sql: true
+  
+app:
+  property:
+    tokenTTLSeconds: 30
+    

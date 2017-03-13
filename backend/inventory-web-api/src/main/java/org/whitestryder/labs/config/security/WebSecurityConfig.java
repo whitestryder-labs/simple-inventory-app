@@ -15,8 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
-import org.whitestryder.labs.config.security.auth.AuthenticatedUserContextServiceImpl;
+import org.whitestryder.labs.config.properties.AppProperties;
 import org.whitestryder.labs.config.security.auth.EntryPointUnauthorizedHandler;
 import org.whitestryder.labs.config.security.auth.JwtTokenAuthenticationService;
 import org.whitestryder.labs.config.security.auth.StatelessAuthenticationFilter;
@@ -43,14 +42,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     private AuthenticationProvider authProvider;
 
+    private AppProperties appProperties;
+    
 
     @Autowired
-    public WebSecurityConfig(UserService userService, EntryPointUnauthorizedHandler unauthorizedHandler, AuthenticationProvider authProvider) {
+    public WebSecurityConfig(
+    		UserService userService,
+    		EntryPointUnauthorizedHandler unauthorizedHandler,
+    		AuthenticationProvider authProvider,
+    		AppProperties appProperties) {
         super(true);
         this.userService = userService;
-        this.tokenAuthenticationService = new JwtTokenAuthenticationService(new TokenHandler("tooManySecrets", userService));
+        this.tokenAuthenticationService = new JwtTokenAuthenticationService(
+        		new TokenHandler("tooManySecrets", userService, appProperties.getTokenTTLSeconds()));
         this.unauthorizedHandler = unauthorizedHandler;
         this.authProvider = authProvider;
+        this.appProperties = appProperties;
     }
 
     @Override
