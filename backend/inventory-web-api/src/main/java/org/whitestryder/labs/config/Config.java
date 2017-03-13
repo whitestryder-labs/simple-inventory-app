@@ -16,9 +16,12 @@ import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemImpl;
 import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItem;
 import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItemImpl;
 import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
+import org.whitestryder.labs.app.support.InventoryItemAccessQuery;
 import org.whitestryder.labs.app.support.InventoryItemAccessRepository;
 import org.whitestryder.labs.app.support.InventoryItemQuery;
 import org.whitestryder.labs.app.support.InventoryItemRepository;
+import org.whitestryder.labs.app.support.pricing.InventoryItemSurgePricingModel;
+import org.whitestryder.labs.app.support.pricing.PricingModel;
 import org.whitestryder.labs.config.security.auth.CustomAuthenticationProvider;
 import org.whitestryder.labs.config.security.auth.EntryPointUnauthorizedHandler;
 import org.whitestryder.labs.config.security.auth.UserService;
@@ -40,6 +43,9 @@ public class Config {
 	
 	@Autowired
 	private InventoryItemAccessRepository inventoryItemAccessRepository;
+	
+	@Autowired
+	private InventoryItemAccessQuery inventoryItemAccessQuery;
 	
 	@Autowired
 	private AuthenticatedUserContextService authUserContextService;
@@ -86,6 +92,9 @@ public class Config {
 	
 
 
-
+	@Bean
+	public PricingModel surgePricingModel(){
+		return new InventoryItemSurgePricingModel(inventoryItemAccessQuery, inventoryItemQuery);
+	}
 
 }

@@ -93,14 +93,12 @@ public class InventoryController {
     	    				item.getPrice(),
     	    				item.getQuantityInStock());
     		
-    		rep.add(linkTo(methodOn(InventoryController.class).getInventoryItem(item.getExternalReferenceId())).withSelfRel());
+    		
     		itemsRepList.add(rep);
 		}
     	
     	InventoryItems inventoryItems = 
     			new InventoryItems(itemsRepList);
-    	
-    	inventoryItems.add(linkTo(methodOn(InventoryController.class).getInventoryItems()).withSelfRel());
     	
     	return ResponseEntity
     				.status(HttpStatus.OK)
@@ -128,8 +126,6 @@ public class InventoryController {
 	    				item.getDescription(),
 	    				item.getPrice(),
 	    				item.getQuantityInStock());
-    	
-    	rep.add(linkTo(methodOn(InventoryController.class).getInventoryItem(item.getExternalReferenceId())).withSelfRel());
     	
     	return ResponseEntity
 				.status(HttpStatus.OK)

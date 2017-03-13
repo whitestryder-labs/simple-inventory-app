@@ -1,6 +1,11 @@
 package org.whitestryder.labs.api.model;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import org.springframework.hateoas.ResourceSupport;
+import org.whitestryder.labs.api.InventoryController;
+import org.whitestryder.labs.app.support.ApplicationException;
 
 
 
@@ -28,13 +33,15 @@ public class InventoryItemRepresentation extends ResourceSupport {
 
 
 	public InventoryItemRepresentation(String externalReferenceId, String name, String description, int price,
-			int quantityInStock) {
+			int quantityInStock) throws ApplicationException {
 		super();
 		this.externalReferenceId = externalReferenceId;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.quantityInStock = quantityInStock;
+		
+		this.add(linkTo(methodOn(InventoryController.class).getInventoryItem(externalReferenceId)).withSelfRel());
 	}
 
 

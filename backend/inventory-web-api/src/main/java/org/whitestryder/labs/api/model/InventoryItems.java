@@ -1,8 +1,13 @@
 package org.whitestryder.labs.api.model;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.util.List;
 
 import org.springframework.hateoas.ResourceSupport;
+import org.whitestryder.labs.api.InventoryController;
+import org.whitestryder.labs.app.support.ApplicationException;
 
 /**
  * Provide a wrapper class that encapsulate a list of InventoryItem
@@ -28,10 +33,13 @@ public class InventoryItems extends ResourceSupport {
 	 * Instantiates a new inventory items.
 	 *
 	 * @param items the items
+	 * @throws ApplicationException 
 	 */
-	public InventoryItems(List<InventoryItemRepresentation> items) {
+	public InventoryItems(List<InventoryItemRepresentation> items) throws ApplicationException {
 		super();
 		this.items = items;
+		
+		this.add(linkTo(methodOn(InventoryController.class).getInventoryItems()).withSelfRel());
 	}
 
 
