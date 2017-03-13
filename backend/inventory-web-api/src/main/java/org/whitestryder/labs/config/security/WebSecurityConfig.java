@@ -3,6 +3,7 @@ package org.whitestryder.labs.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
+import org.whitestryder.labs.config.security.auth.AuthenticatedUserContextServiceImpl;
 import org.whitestryder.labs.config.security.auth.EntryPointUnauthorizedHandler;
 import org.whitestryder.labs.config.security.auth.JwtTokenAuthenticationService;
 import org.whitestryder.labs.config.security.auth.StatelessAuthenticationFilter;
@@ -28,6 +31,7 @@ import org.whitestryder.labs.config.security.auth.UserService;
 @Configuration
 @EnableWebSecurity
 @Order(2)
+@Profile("!test")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -114,13 +118,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return this.tokenAuthenticationService;
     }
     
+
     
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//            .inMemoryAuthentication()
-//                .withUser("sbrooke").password("password").roles("USER")
-//                .and()
-//                .withUser("amagi").password("password").roles("USER");
-//    }
 }

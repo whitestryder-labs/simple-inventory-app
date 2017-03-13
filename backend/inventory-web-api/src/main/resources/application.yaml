@@ -19,7 +19,9 @@ spring:
     #password: Test123$
   jpa.hibernate:
     ddl-auto: none
-    
+  profiles:
+   active: dev
+   
 flyway:
   locations: db/migration/h2
 

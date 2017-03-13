@@ -16,12 +16,13 @@ import org.whitestryder.labs.app.support.InventoryItemRepository;
 import org.whitestryder.labs.config.Config;
 import org.whitestryder.labs.config.persistence.PersistenceConfig;
 import org.whitestryder.labs.core.InventoryItem;
+import org.whitestryder.labs.support.MockWebSecurityTestConfig;
 
 
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@SpringBootTest(classes = {Config.class, PersistenceConfig.class})
+@SpringBootTest(classes = {Config.class, MockWebSecurityTestConfig.class, PersistenceConfig.class})
 public class InventoryItemQueryTests {
 	
 	@Autowired

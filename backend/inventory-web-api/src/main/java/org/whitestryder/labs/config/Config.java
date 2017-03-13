@@ -16,7 +16,6 @@ import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemActivityI
 import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
 import org.whitestryder.labs.app.support.InventoryItemQuery;
 import org.whitestryder.labs.app.support.InventoryItemRepository;
-import org.whitestryder.labs.config.security.auth.AuthenticatedUserContextServiceImpl;
 import org.whitestryder.labs.config.security.auth.CustomAuthenticationProvider;
 import org.whitestryder.labs.config.security.auth.EntryPointUnauthorizedHandler;
 import org.whitestryder.labs.config.security.auth.UserService;
@@ -36,6 +35,8 @@ public class Config {
 	@Autowired
 	private InventoryItemQuery inventoryItemQuery;
 	
+	@Autowired
+	private AuthenticatedUserContextService authUserContextService;
 	
 	@Bean
 	public UserService userService(){
@@ -65,15 +66,11 @@ public class Config {
 	
 	
 	@Bean
-	public AuthenticatedUserContextService authUserContextService(){
-		return new AuthenticatedUserContextServiceImpl();
-	}
-	
-	@Bean
-	public CreateInventoryItemActivity createInventoryItemActivity(AuthenticatedUserContextService authUserContextService){
+	public CreateInventoryItemActivity createInventoryItemActivity(){
 		return new CreateInventoryItemActivityImpl(
 				inventoryItemRepository, inventoryItemQuery, authUserContextService);
 	}
+	
 
 
 
