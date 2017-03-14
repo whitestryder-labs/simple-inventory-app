@@ -60,12 +60,7 @@ A simple web-based inventory application that exposes a REST API for customers t
 |*app*|Use Cases|Contains application specific business rules and encapsulates and implements all of the use cases of the system|
 |*core*|Entities|Encapsulate Enterprise-wide/core business rules|
 
-   - *Frontend*: (TBD):
-     - How it is set up:
-     - How it was built:
-     - How authentication was handled in the UI:
-     - The type of architecture chosen:
-    b. *Data Format*: JSON
+   b. *Data Format*: JSON
        - Example Request/Response:
          - Request:
            - HTTP Method: GET
