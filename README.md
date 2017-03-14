@@ -117,5 +117,5 @@ A simple web-based inventory application that exposes a REST API for customers t
            - specific tokens or groups of tokens with the same Authorization grant can be revoked
          5. JWT standards based token authentication mechanism ([JSON Web Token draft standard](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token))
          6. I wanted to learn something new
-      - Reference: [The Ins and Outs of Token Based Authentication](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
+       - Reference: [The Ins and Outs of Token Based Authentication](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
     
