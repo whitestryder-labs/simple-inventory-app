@@ -114,7 +114,7 @@ A simple web-based inventory application that exposes a REST API for customers t
            - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
            - tokens expire after a certain configurable amount of time as determined by the server
            - specific tokens or groups of tokens with the same Authorization grant can be revoked
-         5. JWT is an up-and-coming standard token 
+         5. JWT standards based token authentication mechanism ([JSON Web Token draft standard](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token))
          6. I wanted to learn something new
-        - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
+      - Reference: [The Ins and Outs of Token Based Authentication](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
     
