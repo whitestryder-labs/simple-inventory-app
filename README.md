@@ -17,9 +17,9 @@ A simple web-based inventory application that exposes a REST API for customers t
   
   
 #### Deliverables
-1. The backend service is built with Java 8 and the Spring Framework, more specifically Spring Boot, Spring Data JPA, Spring MVC, Spring HATEOAS, and Spring Security.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
+1. *Runnable System*: The backend service is built with Java 8 and the Spring Framework, more specifically Spring Boot, Spring Data JPA, Spring MVC, Spring HATEOAS, and Spring Security.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
 
-2. The backend service supports the following API requests via HTTP including the two API requirements
+2. *API Requests*: The backend service supports the following API requests via HTTP including the two API requirements
    - Retrieve the current inventory (i.e. list of items)
    - Buy an item (user must be authenticated)
    - Retrieve a single inventory item
@@ -28,4 +28,30 @@ A simple web-based inventory application that exposes a REST API for customers t
    - Update an inventory item (user must be authenticated with admin role)
      - supports update of 'description', 'price', and 'quantityInStock' attributes
 
-3. 
+3. *Unit and Integration Tests*
+   - Unit tests are provided for each of the core domain entities: InventoryItem, InventoryItemAccess
+   - Integration tests are provided for:
+     - the API operations using RestTemplate
+     - the Surge Pricing Model
+     - the Spring Data JPA queries and repositories
+     
+4. *Explanations*:
+    a. *Application*:
+        - *Backend*:
+           - How it is set up:
+           - How it was built:
+           - How the Surge Pricing Model was designed:
+           - The type of architecture chosen:
+        - *Frontend*: (TBD):
+           - How it is set up:
+           - How it was built:
+           - How authentication was handled in the UI:
+           - The type of architecture chosen:
+    b. *Data Format*: JSON
+       - Request: GET /api/inventory-item
+       - Response: {...}
+    c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
+       - Why?
+         - It is more secure:
+         - 
+    
