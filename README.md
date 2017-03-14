@@ -50,14 +50,14 @@ A simple web-based inventory application that exposes a REST API for customers t
         - for simplicity the layers are manifested in different packages initially, not separate Java libraries
         - Sofware Layers in order of dependency:
              
-|Software Layer|Industry Name|Responsibility|
-|:-------------|:-------------|:-------------|
-|*config*|Frameworks and Drivers|The outermost layer generally composed of frameworks and tools such as the Database, the Web Framework, configuration|
-|*api*|Iterface Adapters|The software in this layer is a set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the Database or the Web|
-|*app*|Use Cases|Contains application specific business rules and encapsulates and implements all of the use cases of the system|
-|*core*|Entities|Encapsulate Enterprise-wide/core business rules|
+          |Software Layer|Industry Name|Responsibility|
+          |:-------------|:-------------|:-------------|
+          |*config*|Frameworks and Drivers|The outermost layer generally composed of frameworks and tools such as the Database, the Web Framework, configuration|
+          |*api*|Iterface Adapters|The software in this layer is a set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the Database or the Web|
+          |*app*|Use Cases|Contains application specific business rules and encapsulates and implements all of the use cases of the system|
+          |*core*|Entities|Encapsulate Enterprise-wide/core business rules|
 
-   b. *Data Format*: JSON
+    b. *Data Format*: JSON
        - Example Request/Response:
          - Request:
            - HTTP Method: GET
