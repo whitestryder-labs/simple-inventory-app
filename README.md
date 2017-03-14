@@ -17,9 +17,10 @@ A simple web-based inventory application that exposes a REST API for customers t
   
   
 ### Deliverables
-1. *Runnable System*: The backend service is built with Java 8 and the Spring Framework, more specifically Spring Boot, Spring Data JPA, Spring MVC, Spring HATEOAS, and Spring Security.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
+####1. *Runnable System*: The backend service is built with Java 8 and the Spring Framework, more specifically Spring Boot, Spring Data JPA, Spring MVC, Spring HATEOAS, and Spring Security.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
 
-2. *API Requests*: The backend service supports the following API requests via HTTP including the two API requirements
+
+####2. *API Requests*: The backend service supports the following API requests via HTTP including the two API requirements
    - Retrieve the current inventory (i.e. list of items)
    - Buy an item (user must be authenticated)
    - Retrieve a single inventory item
@@ -28,7 +29,8 @@ A simple web-based inventory application that exposes a REST API for customers t
    - Update an inventory item (user must be authenticated with admin role)
      - supports update of 'description', 'price', and 'quantityInStock' attributes
 
-3. *Unit and Integration Tests*
+
+####3. *Unit and Integration Tests*
    - Unit tests are provided for:
      - Domain Entities: IventoryItem, InventoryItemAccess
    - Integration tests are provided for:
@@ -38,7 +40,7 @@ A simple web-based inventory application that exposes a REST API for customers t
    - Test technologies used: JUnit, Spring Test, Spring Dev Tools, and RestTemplate
      
      
-4. *Explanations*:
+####4. *Explanations*:
  - a. *Application*:
   - How it is set up:
   - Began from various Spring Boot Gradle-based sample applications and setup a skeleton application with working Gradle build configuration
@@ -57,7 +59,8 @@ A simple web-based inventory application that exposes a REST API for customers t
 |*app*|Use Cases|Contains application specific business rules and encapsulates and implements all of the use cases of the system|
 |*core*|Entities|Encapsulate Enterprise-wide/core business rules|
 
- - b. *Data Format*: JSON
+
+##### b. *Data Format*: JSON
   - Example Request/Response:
    - Request:
     - HTTP Method: GET
@@ -105,8 +108,7 @@ A simple web-based inventory application that exposes a REST API for customers t
 }
 ```
 
-
-- c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
+##### c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
 - Stateless token-based authentication worked as follows:
  - User Requests Access with Username / Password
  - Application validates credentials
@@ -122,5 +124,5 @@ A simple web-based inventory application that exposes a REST API for customers t
      - tokens expire after a certain configurable amount of time as determined by the server
      - specific tokens or groups of tokens with the same Authorization grant can be revoked
     5. Standards-based: See ([JSON Web Token draft standard](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html))
-         6. I wanted to learn something new
-       - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token)
+    6. I wanted to learn something new
+     - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token)
