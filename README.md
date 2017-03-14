@@ -120,9 +120,9 @@ A simple web-based inventory application that exposes a REST API for customers t
     2. Simplicity: you don't need to worry about where the user is 'logged-in'
     3. Reusability: It is transportable: you can pass it along to a 3rd party application, for example, a mobile application
     4. Security:
-      - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
-      - tokens expire after a certain configurable amount of time as determined by the server
-      - specific tokens or groups of tokens with the same Authorization grant can be revoked
+       - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
+       - tokens expire after a certain configurable amount of time as determined by the server
+       - specific tokens or groups of tokens with the same Authorization grant can be revoked
     5. Standards-based: See ([JSON Web Token draft standard](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html))
     6. I wanted to learn something new
-     - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token)
+  - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token)
