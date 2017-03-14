@@ -104,14 +104,17 @@ A simple web-based inventory application that exposes a REST API for customers t
          4. Client stores that token and sends it along with every request
          5. Server verifies token and responds with data
        - Why was this authentication mechanism chosen?
-         1. I wanted to learn something new
-         2. Uses less memory on server:
+         1. Uses less memory on server:
             - as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
-         3. It is simpler:
+         2. It is simpler:
            - you don't need to worry about where the user is 'logged-in'
-         4. It is transportable:
+         3. It is transportable:
            - you can pass it along to a 3rd party application, for example, a mobile application
-         5. It is more secure:
-           - ??
+         4. It is more secure:
+           - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
+           - tokens expire after a certain configurable amount of time as determined by the server
+           - specific tokens or groups of tokens with the same Authorization grant can be revoked
+         5. JWT is an up-and-coming standard token 
+         6. I wanted to learn something new
         - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
     
