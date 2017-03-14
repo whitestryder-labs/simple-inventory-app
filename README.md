@@ -29,7 +29,7 @@ A simple web-based inventory application that exposes a REST API for customers t
      - supports update of 'description', 'price', and 'quantityInStock' attributes
 
 3. *Unit and Integration Tests*
-   - Unit tests are used to test the 'core' layer:
+   - Unit tests are provided for:
      - Domain Entities: IventoryItem, InventoryItemAccess
    - Integration tests are provided for:
      - API operations are tested using RestTemplate
