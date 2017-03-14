@@ -59,6 +59,7 @@ A simple web-based inventory application that exposes a REST API for customers t
 |*api*|Iterface Adapters|The software in this layer is a set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the Database or the Web|
 |*app*|Use Cases|Contains application specific business rules and encapsulates and implements all of the use cases of the system|
 |*core*|Entities|Encapsulate Enterprise-wide/core business rules|
+
         - *Frontend*: (TBD):
            - How it is set up:
            - How it was built:
