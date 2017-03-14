@@ -97,11 +97,21 @@ A simple web-based inventory application that exposes a REST API for customers t
         }
         ```
     c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
-       - Why?
-         - Uses less memory on server:
-           - as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
-         - It is simpler:
+       - Stateless token-based authentication worked as follows:
+         1. User Requests Access with Username / Password
+         2. Application validates credentials
+         3. Application provides a signed token to the client
+         4. Client stores that token and sends it along with every request
+         5. Server verifies token and responds with data
+       - Why was this authentication mechanism chosen?
+         1. I wanted to learn something new
+         2. Uses less memory on server:
+            - as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
+         3. It is simpler:
            - you don't need to worry about where the user is 'logged-in'
-         - It is more secure:
+         4. It is transportable:
+           - you can pass it along to a 3rd party application, for example, a mobile application
+         5. It is more secure:
            - ??
+        - Reference: [Token-based Statless Authentication](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
     
