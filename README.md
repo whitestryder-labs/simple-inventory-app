@@ -105,7 +105,7 @@ A simple web-based inventory application that exposes a REST API for customers t
         }
         ```
         
-    c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
+   c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
        - Stateless token-based authentication worked as follows:
          1. User Requests Access with Username / Password
          2. Application validates credentials
