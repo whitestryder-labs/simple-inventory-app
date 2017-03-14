@@ -36,14 +36,15 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
 ###4. How to use
 1. REST API
       
-|Operation | HTTP Method | Relative URL Path  | Requires Authentication |
-|:---------|:-------------:|:------------------|:------------------------:|
-Check if service is available |GET| /health | No |
-Get the inventory listing |GET| /api/inventory-item | No |
-Add an item to the inventory |POST| /api/inventory-item | No |
-Get the inventory item with id={id} |GET| /api/inventory-item/{id} | No |
-Create an authentication token (login)|POST| /auth/token | Yes|
-Buy an item from the inventory |POS | /api/inventory-item/{id}/purchase | Yes |
+|Operation | HTTP Method | Relative URL Path  | Requires Authentication | Requires Admin Authentication |
+|:---------|:-------------:|:------------------|:------------------------:|----------------------------:|
+Check if service is available |GET| /health | No | No |
+Get the inventory listing |GET| /api/inventory-item | No | No |
+Add an item to the inventory |POST| /api/inventory-item | No | No |
+Get a specific inventory item |GET| /api/inventory-item/{id} | No | No |
+Create an authentication token (login)|POST| /auth/token | No | No |
+Buy an item from the inventory |POS | /api/inventory-item/{refId}/purchase | Yes | No |
+Update the inventory item with refId={refId} |PUT| /api/inventory-item/{refId} | Yes | Yes |
 
 		
 ### 5. How to setup development in Eclipse
