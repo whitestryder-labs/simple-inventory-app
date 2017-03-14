@@ -100,6 +100,8 @@ A simple web-based inventory application that exposes a REST API for customers t
        - Why?
          - Uses less memory on server:
            - as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
+         - It is simpler:
+           - you don't need to worry about where the user is 'logged-in'
          - It is more secure:
-           - 
+           - ??
     
