@@ -66,7 +66,6 @@ A simple web-based inventory application that exposes a REST API for customers t
            - HTTP Method: GET
            - Relative URL Path: /api/inventory-item
          - Response:
-       
          ```javascript
          {
         "items": [
