@@ -113,12 +113,9 @@ A simple web-based inventory application that exposes a REST API for customers t
          4. Client stores that token and sends it along with every request
          5. Server verifies token and responds with data
        - Why was this authentication mechanism chosen?
-         1. Uses less memory on server:
-            - as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
-         2. It is simpler:
-           - you don't need to worry about where the user is 'logged-in'
-         3. It is transportable:
-           - you can pass it along to a 3rd party application, for example, a mobile application
+         1. Uses less memory on server: as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
+         2. It is simpler: you don't need to worry about where the user is 'logged-in'
+         3. It is transportable: you can pass it along to a 3rd party application, for example, a mobile application
          4. It is more secure:
            - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
            - tokens expire after a certain configurable amount of time as determined by the server
