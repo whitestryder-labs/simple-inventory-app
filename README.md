@@ -16,6 +16,16 @@ A simple web-based inventory application that exposes a REST API for customers t
   - A2: No, if the item's 'quantityInStock' is zero then the item has gone "out of stock" and buying an item is not possible for any user authenticated or not.
   
   
-  
-  #### Deliverables
-  ##### 1. The backend service is build with Java 8 and the Spring Framework, more specifically Spring Boot.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
+#### Deliverables
+1. The backend service is build with Java 8 and the Spring Framework, more specifically Spring Boot.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
+
+2. The backend service supports the following API requests via HTTP including the two API requirements
+   - Retrieve the current inventory (i.e. list of items)
+   - Buy an item (user must be authenticated)
+   - Retrieve a single inventory item
+   - Login (i.e. create an authentication token)
+   - Add an inventory item (user must be authenticated with admin role)
+   - Update an inventory item (user must be authenticated with admin role)
+     - supports update of 'description', 'price', and 'quantityInStock' attributes
+
+3. 
