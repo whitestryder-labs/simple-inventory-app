@@ -53,8 +53,11 @@ A simple web-based inventory application that exposes a REST API for customers t
            - How authentication was handled in the UI:
            - The type of architecture chosen:
     b. *Data Format*: JSON
-       - Request: GET /api/inventory-item
-       - Response:
+       - Example Request/Response:
+         - Request:
+           - HTTP Method: GET
+           - Relative URL Path: /api/inventory-item
+         - Response:
        
          ```javascript
          {
