@@ -29,11 +29,16 @@ A simple web-based inventory application that exposes a REST API for customers t
      - supports update of 'description', 'price', and 'quantityInStock' attributes
 
 3. *Unit and Integration Tests*
-   - Unit tests are provided for each of the core domain entities: InventoryItem, InventoryItemAccess
-   - Integration tests are provided for:
-     - the API operations using RestTemplate
-     - the Surge Pricing Model
-     - the Spring Data JPA queries and repositories
+   - Unit tests are used to test the 'core' layer:
+     - Domain Entities: IventoryItem, InventoryItemAccess
+   - Integration tests are used to test the 'config', 'api', and 'app' layers:
+     - 'api' layer:
+       - API operations are tested using RestTemplate
+     - 'app' layer:
+       - Surge Pricing Model
+       - the Spring Data JPA queries and repositories
+     - Test technologies used: JUnit, Spring Test, Spring Dev Tools, and RestTemplate
+     
      
 4. *Explanations*:
     a. *Application*:
@@ -49,7 +54,47 @@ A simple web-based inventory application that exposes a REST API for customers t
            - The type of architecture chosen:
     b. *Data Format*: JSON
        - Request: GET /api/inventory-item
-       - Response: {...}
+       - Response:
+         ```
+         {
+        "items": [
+            {
+                "externalReferenceId": "a84ad207-330d-453d-9172-1a2dcfda6e5b",
+                "name": "Soccer ball 1",
+                "description": "This is a very good match ball",
+                "price": 160,
+                "quantityInStock": 0,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8181/api/inventory-item/a84ad207-330d-453d-9172-1a2dcfda6e5b"
+                    },
+                    "related x-buy": {
+                        "href": "http://localhost:8181/api/inventory-item/a84ad207-330d-453d-9172-1a2dcfda6e5b/purchase"
+                    }
+                }
+            },
+            {
+                "externalReferenceId": "614b6eac-a505-40de-9e19-b1afad13bb2d",
+                "name": "Soccer ball 2",
+                "description": "This is a very good match ball",
+                "price": 160,
+                "quantityInStock": 1,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8181/api/inventory-item/614b6eac-a505-40de-9e19-b1afad13bb2d"
+                    },
+                    "related x-buy": {
+                        "href": "http://localhost:8181/api/inventory-item/614b6eac-a505-40de-9e19-b1afad13bb2d/purchase"
+                    }
+                }
+            }
+         ],
+         "_links": {
+           "self": {
+           "href": "http://localhost:8181/api/inventory-item"
+          }
+        }
+        ```
     c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
        - Why?
          - It is more secure:
