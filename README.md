@@ -4,8 +4,8 @@ A simple web-based inventory application that exposes a REST API for customers t
 ## Backend
 ### [inventory-web-api](./backend/inventory-web-api/README.md)
 
-## Frontend
-### [inventory-web-ui](./backend/inventory-web-ui/README.md)
+## Frontend (TBD)
+### [inventory-web-ui](./frontend/inventory-web-ui/README.md)
 
 
 #### A couple questions to consider:
