@@ -22,14 +22,8 @@ public class InventoryItemSurgePricingModel implements PricingModel {
 	private InventoryItemAccessQuery iiaQuery;
 	private InventoryItemQuery iiQuery;
 	
-	//private int surgePriceModelAccessTimeMins = 60;
-	private int surgePriceModelAccessTimeMins = 10;
+	private int surgePriceModelAccessTimeMins = 60;
 	private int surgePriceModelViewsPerAccessTimeThreshold = 10;
-
-
-
-
-
 	private double surgePriceModelPriceIncreasePercent = 0.10; 	//10% 
 
 	public InventoryItemSurgePricingModel() {

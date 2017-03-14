@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.whitestryder.labs.core.InventoryItem;
 import org.whitestryder.labs.core.InventoryItemAccess;
+import org.whitestryder.labs.core.support.DomainException;
+import org.whitestryder.labs.core.support.InventoryItemOutOfStockException;
 
 
 
@@ -108,7 +110,7 @@ public class InventoryItemTests {
 	 * It should provide ability to buy item.
 	 */
 	@Test
-	public void itShouldProvideAbilityToBuyItem(){
+	public void itShouldProvideAbilityToBuyItem() throws InventoryItemOutOfStockException {
 		int testItemQuantity = 10;
 		InventoryItem item = new InventoryItem("An item", null, 25, testItemQuantity);
 			
@@ -121,9 +123,10 @@ public class InventoryItemTests {
 	
 	/**
 	 * It should prevent buying of item if none in stock.
+	 * @throws InventoryItemOutOfStockException 
 	 */
-	@Test(expected = IllegalStateException.class)
-	public void itShouldPreventBuyingOfItemIfNoneInStock(){
+	@Test(expected = InventoryItemOutOfStockException.class)
+	public void itShouldPreventBuyingOfItemIfNoneInStock() throws InventoryItemOutOfStockException{
 		int testItemQuantity = 1;
 		InventoryItem item = new InventoryItem("An item", null, 25, testItemQuantity);
 			

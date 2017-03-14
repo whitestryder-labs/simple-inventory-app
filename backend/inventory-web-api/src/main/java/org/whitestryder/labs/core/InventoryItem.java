@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.whitestryder.labs.core.support.DomainException;
+import org.whitestryder.labs.core.support.InventoryItemOutOfStockException;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
@@ -145,8 +148,10 @@ public class InventoryItem {
 	 * @param description the new description
 	 */
 	protected void setDescription(String description) {
-		Preconditions.checkArgument(name.length() <= MaxDescLength,
-				String.format("InventoryItem 'name' must be <= %s characters in length", MaxDescLength));
+		if (description != null){
+			Preconditions.checkArgument(description.length() <= MaxDescLength,
+					String.format("InventoryItem 'description' must be <= %s characters in length", MaxDescLength));
+		}
 		this.description = description;
 	}
 	
@@ -220,8 +225,12 @@ public class InventoryItem {
 	/**
 	 * Buy this item.
 	 */
-	public void buy() {
-		Preconditions.checkState(this.quantityInStock > 0, "This item is out of stock");
+	public void buy() throws InventoryItemOutOfStockException {
+		try {
+			Preconditions.checkState(this.quantityInStock > 0, "This item is out of stock");
+		} catch (IllegalStateException ex){
+			throw new InventoryItemOutOfStockException(ex.getMessage());
+		}
 		this.quantityInStock--;
 	}
 
@@ -259,7 +268,18 @@ public class InventoryItem {
 	}
 
 
-	
+	/**
+	 * Update.
+	 *
+	 * @param description the description
+	 * @param price the price
+	 * @param quantityInStock the quantity in stock
+	 */
+	public void update(String description, int price, int quantityInStock) {
+		this.setDescription(description);
+		this.setPrice(price);
+		this.setQuantityInStock(quantityInStock);
+	}
 	
 }
 

@@ -86,6 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        // Allow access to list inventory and individual inventory items
 	        .antMatchers(HttpMethod.GET, "/api/inventory-item").permitAll()
 	        .antMatchers(HttpMethod.GET, "/api/inventory-item/**/*").permitAll()
+	        .antMatchers(HttpMethod.PUT, "/api/inventory-item/**/*").hasAuthority("ROLE_ADMIN")
 	        
 	        // All other requests need to be authenticated
 	        .anyRequest().authenticated().and()

@@ -8,16 +8,9 @@ public class UserContext {
 
 	/** The username. */
 	private String username;
-	
-	
-	/**
-	 * Gets the username.
-	 *
-	 * @return the username
-	 */
-	public String getUsername() {
-		return username;
-	}
+
+
+
 
 
 	/**
@@ -27,6 +20,19 @@ public class UserContext {
 	 */
 	public UserContext(String username) {
 		this.username = username;
+	}
+
+
+	
+	
+	
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
 	}
 
 }

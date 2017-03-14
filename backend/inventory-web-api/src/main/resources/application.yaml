@@ -6,17 +6,13 @@ debug: false
 logging.level:
   org.springframework.security: ERROR
   org.hibernate: INFO
-  #org.hibernate.tool.hbm2ddl: DEBUG
   org.flywaydb: INFO
   
 spring:
   datasource:
     url: jdbc:h2:file:${user.home}/simple_inventory_db_instance_h2/INVENTORY_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE
-    #url: jdbc:postgresql://localhost:5432/inventory_db
     username: admin
-    #username: postgres
     password: admin321
-    #password: Test123$
   jpa.hibernate:
     ddl-auto: none
   profiles:
@@ -32,4 +28,7 @@ hibernate:
 app:
   property:
     #tokenTTLSeconds: 30
+    #surgePriceModelAccessTimeMins: 60
+    #surgePriceModelViewsPerAccessTimeThreshold: 10
+    #surgePriceModelPriceIncreasePercent: 0.10 
     

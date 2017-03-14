@@ -23,7 +23,6 @@ public class AuthenticatedUserContextServiceImpl implements AuthenticatedUserCon
 		
 		return new UserContext(auth.getName());
 	}
-
 	
 	
 }

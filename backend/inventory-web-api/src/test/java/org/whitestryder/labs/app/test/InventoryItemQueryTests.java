@@ -1,6 +1,7 @@
 package org.whitestryder.labs.app.test;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -63,17 +64,17 @@ public class InventoryItemQueryTests {
 	
 	
 	/**
-	 * It should not find by name when item no item with that name.
+	 * It should not find by name when no item with that name.
 	 */
 	@Test
-	public void itShouldNotFindByNameWhenItemNoItemWithThatName(){	
+	public void itShouldNotFindByNameWhenNoItemWithThatName(){	
 		String testItemName = "Nike CR7";
 		
 		InventoryItem testItem = new InventoryItem(testItemName, "Nike Christiano Ronaldo soccer shoes special edition", 250, 2);
 		
 		repository.save(testItem);
 		
-		List<InventoryItem> itemsFound = query.findByName( testItemName + " this item won't be found" );
+		List<InventoryItem> itemsFound = query.findByName( testItemName + " this item won't be found " + UUID.randomUUID().toString());
 		
 		Assert.assertNotNull(itemsFound);
 		Assert.assertEquals(0,  itemsFound.size());

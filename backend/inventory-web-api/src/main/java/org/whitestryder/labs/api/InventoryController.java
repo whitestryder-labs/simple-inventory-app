@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.whitestryder.labs.api.model.InventoryItemPurchaseResult;
 import org.whitestryder.labs.api.model.InventoryItemRepresentation;
 import org.whitestryder.labs.api.model.InventoryItems;
+import org.whitestryder.labs.app.activity.inventory.BuyInventoryItem;
 import org.whitestryder.labs.app.activity.inventory.CreateInventoryItem;
 import org.whitestryder.labs.app.activity.inventory.GetInventoryItemList;
 import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItem;
+import org.whitestryder.labs.app.activity.inventory.UpdateInventoryItem;
 import org.whitestryder.labs.app.activity.inventory.model.InventoryItemDecorator;
 import org.whitestryder.labs.app.support.ApplicationException;
 import org.whitestryder.labs.core.InventoryItem;
@@ -42,7 +45,11 @@ public class InventoryController {
 	/** The get inventory item list. */
 	private GetInventoryItemList getInventoryItemList;
 	
-
+	/** The buy inventory item. */
+	private BuyInventoryItem buyInventoryItem;
+	
+	/** The update inventory item. */
+	private UpdateInventoryItem updateInventoryItem;
 	
 	
 	/**
@@ -51,27 +58,43 @@ public class InventoryController {
 	 * @param createInventoryItemActivity the create inventory item activity
 	 * @param getSingleInventoryItem the get single inventory item
 	 * @param getInventoryItemList the get inventory item list
+	 * @param buyInventoryItem the buy inventory item
+	 * @param updateInventoryItem the update inventory item
 	 */
 	@Autowired
 	public InventoryController(
 			CreateInventoryItem createInventoryItemActivity,
 			GetSingleInventoryItem getSingleInventoryItem,
-			GetInventoryItemList getInventoryItemList){
+			GetInventoryItemList getInventoryItemList,
+			BuyInventoryItem buyInventoryItem,
+			UpdateInventoryItem updateInventoryItem){
 		this.createInventoryItem = createInventoryItemActivity;
 		this.getSingleInventoryItem = getSingleInventoryItem;
 		this.getInventoryItemList = getInventoryItemList;
+		this.buyInventoryItem = buyInventoryItem;
+		this.updateInventoryItem = updateInventoryItem;
 	}
 	
 	
     /**
      * Buy item from inventory.
      *
-     * @param id the id
+     * @param id the refId
      * @return the string
+     * @throws ApplicationException 
      */
-    @RequestMapping(path = "/api/inventory-item/{id}/purchase", method = RequestMethod.POST)
-    public String buyItemFromInventory(@PathVariable String id) {
-        return String.format("You requested to purchase item with id=%s", id);
+    @RequestMapping(path = "/api/inventory-item/{refId}/purchase", method = RequestMethod.POST)
+    public ResponseEntity<InventoryItemPurchaseResult> buyItemFromInventory(@PathVariable String refId) throws ApplicationException {
+        
+    	InventoryItemDecorator itemBought = buyInventoryItem.execute(refId);
+    	
+    	InventoryItemPurchaseResult purchaseResult = 
+    			new InventoryItemPurchaseResult(
+    					itemBought.getName(),
+    					itemBought.getExternalReferenceId(),
+    					itemBought.getCurrentPrice());
+    	
+    	return ResponseEntity.ok().body(purchaseResult);
     }
     
     /**
@@ -159,5 +182,25 @@ public class InventoryController {
         		.body("Created");
     }
     
+    
+    
+    @RequestMapping(path = "/api/inventory-item/{refId}", method = RequestMethod.PUT)
+    public ResponseEntity<InventoryItemRepresentation> updateInventoryItem(
+    		@RequestBody InventoryItem inventoryItem, @PathVariable String refId) throws ApplicationException {
+        
+    	InventoryItem item = updateInventoryItem.execute(inventoryItem, refId);
+    	
+    	InventoryItemRepresentation rep = 
+				new InventoryItemRepresentation(
+	    				item.getExternalReferenceId(),
+	    				item.getName(),
+	    				item.getDescription(),
+	    				item.getPrice(),
+	    				item.getQuantityInStock());
+    	
+    	return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(rep);
+    }
 
 }

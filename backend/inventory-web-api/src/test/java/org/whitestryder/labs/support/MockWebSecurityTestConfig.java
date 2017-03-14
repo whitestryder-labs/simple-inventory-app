@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
 import org.whitestryder.labs.app.support.UserContext;
@@ -55,7 +54,8 @@ public class MockWebSecurityTestConfig {
 		@Override
 		public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 	       	Collection<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+	       	grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+	       	grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	    	User user = new User("user", "password", grantedAuthorities);
 	    	UserAuthentication mockAuth = new UserAuthentication(user);	    	
 			return mockAuth;

@@ -23,26 +23,39 @@ import org.whitestryder.labs.core.InventoryItem;
 import org.whitestryder.labs.core.InventoryItemAccess;
 import org.whitestryder.labs.support.MockWebSecurityTestConfig;
 
+
+/**
+ * The Class InventoryItemSurgePricingModelTests.
+ */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SpringBootTest(classes = {Config.class, MockWebSecurityTestConfig.class, PersistenceConfig.class})
 public class InventoryItemSurgePricingModelTests {
 
+	/** The ii repository. */
 	@Autowired
 	private InventoryItemRepository iiRepository;
 	
+	/** The iia repository. */
 	@Autowired
 	private InventoryItemAccessRepository iiaRepository;
 	
+	/** The pricing model. */
 	@Autowired
 	private PricingModel pricingModel;
 	
 	
+	/**
+	 * Setup.
+	 */
 	@Before
 	public void setup(){
 		Assert.assertTrue(pricingModel instanceof InventoryItemSurgePricingModel);
 	}
 	
+	/**
+	 * It should return empty surge price map when no surge present.
+	 */
 	@Test
 	public void itShouldReturnEmptySurgePriceMapWhenNoSurgePresent(){
 		double basePrice = 10.0;
@@ -66,8 +79,11 @@ public class InventoryItemSurgePricingModelTests {
 	}
 
 	
+	/**
+	 * It should return price increase when surge present.
+	 */
 	@Test
-	public void itShouldReturnBasePriceMapWhenSurgePresent(){
+	public void itShouldReturnPriceIncreaseWhenSurgePresent(){
 		double basePrice = 10.0;
 		double priceDiffTolerance = 0.001;
 		
