@@ -54,8 +54,7 @@ A simple web-based inventory application that exposes a REST API for customers t
            - The type of architecture chosen:
     b. *Data Format*: JSON
        - Request: GET /api/inventory-item
-       - Response:      
-       
+       - Response:
          ```javascript
          {
         "items": [
