@@ -39,16 +39,16 @@ A simple web-based inventory application that exposes a REST API for customers t
      
      
 4. *Explanations*:
-    a. *Application*:
-       - How it is set up:
-         - Began from various Spring Boot Gradle-based sample applications and setup a skeleton application with working Gradle build configuration
-         - Imported Gradle project into Eclipse (Neon) and further broken down the application into different software layers
-        - How it was built:
-        - How the Surge Pricing Model was designed:
-        - The type of architecture chosen:
-        - Roughly followed ["The Clean Architecture"](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) AKA Onion Architecture
-        - for simplicity the layers are manifested in different packages initially, not separate Java libraries
-        - Sofware Layers in order of dependency:
+ - a. *Application*:
+  - How it is set up:
+  - Began from various Spring Boot Gradle-based sample applications and setup a skeleton application with working Gradle build configuration
+    - Imported Gradle project into Eclipse (Neon) and further broken down the application into different software layers
+   - How it was built:
+   - How the Surge Pricing Model was designed:
+   - The type of architecture chosen:
+    - Roughly follows ["The Clean Architecture"](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) AKA Onion Architecture
+     - for simplicity the layers are manifested in different packages initially, not separate Java libraries
+     - Sofware Layers in order of dependency:
              
 |Software Layer|Industry Name|Responsibility|
 |:-------------|:-------------|:-------------|
@@ -57,69 +57,70 @@ A simple web-based inventory application that exposes a REST API for customers t
 |*app*|Use Cases|Contains application specific business rules and encapsulates and implements all of the use cases of the system|
 |*core*|Entities|Encapsulate Enterprise-wide/core business rules|
 
-   b. *Data Format*: JSON
-       - Example Request/Response:
-         - Request:
-           - HTTP Method: GET
-           - Relative URL Path: /api/inventory-item
-         - Response:
-         
-         ```javascript
-         {
-        "items": [
-            {
-                "externalReferenceId": "a84ad207-330d-453d-9172-1a2dcfda6e5b",
-                "name": "Soccer ball 1",
-                "description": "This is a very good match ball",
-                "price": 160,
-                "quantityInStock": 0,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8181/api/inventory-item/a84ad207-330d-453d-9172-1a2dcfda6e5b"
-                    },
-                    "related x-buy": {
-                        "href": "http://localhost:8181/api/inventory-item/a84ad207-330d-453d-9172-1a2dcfda6e5b/purchase"
-                    }
-                }
-            },
-            {
-                "externalReferenceId": "614b6eac-a505-40de-9e19-b1afad13bb2d",
-                "name": "Soccer ball 2",
-                "description": "This is a very good match ball",
-                "price": 160,
-                "quantityInStock": 1,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8181/api/inventory-item/614b6eac-a505-40de-9e19-b1afad13bb2d"
-                    },
-                    "related x-buy": {
-                        "href": "http://localhost:8181/api/inventory-item/614b6eac-a505-40de-9e19-b1afad13bb2d/purchase"
-                    }
-                }
-            }
-         ],
-         "_links": {
-           "self": {
-           "href": "http://localhost:8181/api/inventory-item"
-          }
+ - b. *Data Format*: JSON
+  - Example Request/Response:
+   - Request:
+    - HTTP Method: GET
+    - Relative URL Path: /api/inventory-item
+   - Response:
+
+```javascript
+{
+"items": [
+{
+    "externalReferenceId": "a84ad207-330d-453d-9172-1a2dcfda6e5b",
+    "name": "Soccer ball 1",
+    "description": "This is a very good match ball",
+    "price": 160,
+    "quantityInStock": 0,
+    "_links": {
+        "self": {
+            "href": "http://localhost:8181/api/inventory-item/a84ad207-330d-453d-9172-1a2dcfda6e5b"
+        },
+        "related x-buy": {
+            "href": "http://localhost:8181/api/inventory-item/a84ad207-330d-453d-9172-1a2dcfda6e5b/purchase"
         }
-        ```
-        
-   c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
-       - Stateless token-based authentication worked as follows:
-         - User Requests Access with Username / Password
-         - Application validates credentials
-         - Application provides a signed token to the client
-         - Client stores that token and sends it along with every request
-         - Server verifies token and responds with data
-       - Why was this authentication mechanism chosen?
-         1. Uses less memory on server: as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
-         2. It is simpler: you don't need to worry about where the user is 'logged-in'
-         3. It is transportable: you can pass it along to a 3rd party application, for example, a mobile application
-         4. It is more secure:
-           - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
-           - tokens expire after a certain configurable amount of time as determined by the server
-           - specific tokens or groups of tokens with the same Authorization grant can be revoked
-         5. JWT standards based token authentication mechanism ([JSON Web Token draft standard](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token))
+    }
+},
+{
+    "externalReferenceId": "614b6eac-a505-40de-9e19-b1afad13bb2d",
+    "name": "Soccer ball 2",
+    "description": "This is a very good match ball",
+    "price": 160,
+    "quantityInStock": 1,
+    "_links": {
+        "self": {
+            "href": "http://localhost:8181/api/inventory-item/614b6eac-a505-40de-9e19-b1afad13bb2d"
+        },
+        "related x-buy": {
+            "href": "http://localhost:8181/api/inventory-item/614b6eac-a505-40de-9e19-b1afad13bb2d/purchase"
+        }
+    }
+}
+],
+"_links": {
+"self": {
+"href": "http://localhost:8181/api/inventory-item"
+}
+}
+```
+
+
+- c. *Authentication Mechanism*: Stateless JWT (JSON Web Token) Authentication
+- Stateless token-based authentication worked as follows:
+ - User Requests Access with Username / Password
+ - Application validates credentials
+  - Application provides a signed token to the client
+  - Client stores that token and sends it along with every request
+  - Server verifies token and responds with data
+   - Why was this authentication mechanism chosen?
+    1. Uses less memory on server: as no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable then session-based approaches 
+    2. Simplicity: you don't need to worry about where the user is 'logged-in'
+    3. Reusability: It is transportable: you can pass it along to a 3rd party application, for example, a mobile application
+    4. Security:
+     - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
+     - tokens expire after a certain configurable amount of time as determined by the server
+     - specific tokens or groups of tokens with the same Authorization grant can be revoked
+    5. Standards-based: See ([JSON Web Token draft standard](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html))
          6. I wanted to learn something new
-       - Reference: [The Ins and Outs of Token Based Authentication](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
+       - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token)
