@@ -10,7 +10,12 @@ A simple web-based inventory application that exposes a REST API for customers t
 
 #### A couple questions to consider:
 - Q1: How do we know if a user is authenticated?
-  - A1: In the backend *inventory-web-api* service we use a stateless security model.  For a user to be authenticated they must first request a JWT (JSON Web Token) authentication token by providing a valid 'username' and 'password' in a form-data POST request.  To access protected resources a client must provide the authentication token in an 'X-AUTH-TOKEN' HTTP header. The *inventory-web-api* service looks for a valid token which is cryptographically signed with the 'username' and an expiry date which is configurable at a service-wide level.
+  - A1: In the backend *inventory-web-api* service we use a stateless security model.  For a user to be authenticated they must first request a JWT (JSON Web Token) authentication token by providing a valid 'username' and 'password' in a form-data POST request to the service.  To access protected resources a client must provide the authentication token in an 'X-AUTH-TOKEN' HTTP header. The service looks for a valid token which is cryptographically signed with the 'username' and an expiry date which is configurable at a service-wide level, therefore the token cannot be modified without detection.  If a token is decrypted and found to be valid (i.e. not expired and contain an existing user) then SecuritySessionHolder is entrusted with an authentication object but only for the life of the request.  There is no session retained in the service after the request returns.  The service relies on security rules configured in the Security framework
 
-- Q1: Is it always possible to buy an item?
-  - A1: No, if the item's 'quantityInStock' is zero then the item has gone "out of stock" and buying an item is not possible for any user authenticated or not.
+- Q2: Is it always possible to buy an item?
+  - A2: No, if the item's 'quantityInStock' is zero then the item has gone "out of stock" and buying an item is not possible for any user authenticated or not.
+  
+  
+  
+  #### Deliverables
+  ##### 1. The backend service is build with Java 8 and the Spring Framework, more specifically Spring Boot.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
