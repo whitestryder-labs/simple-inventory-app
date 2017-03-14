@@ -52,12 +52,13 @@ A simple web-based inventory application that exposes a REST API for customers t
              - Roughly followed ["The Clean Architecture"](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) AKA Onion Architecture
              - for simplicity the layers are manifested in different packages initially, not separate Java libraries
              - Sofware Layers in order of dependency:
-               |Software Layer|Responsibility|
-               |:-------------|:-------------|
-               |*config*|responsible for ...|
-               |*api*|responsible for ...|
-               |*app*|responsible for ...|
-               |*core*|responsible for ...|
+             
+|Software Layer|Responsibility|
+|:-------------|:-------------|
+|*config*|responsible for ...|
+|*api*|responsible for ...|
+|*app*|responsible for ...|
+|*core*|responsible for ...|
         - *Frontend*: (TBD):
            - How it is set up:
            - How it was built:
