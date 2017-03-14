@@ -22,7 +22,7 @@ public class InventoryItemRepresentation extends ResourceSupport {
 	private String description;
 	
 	/** The price. */
-	private int price;
+	private double price;
 	
 	/** The quantity in stock. */
 	private int quantityInStock;
@@ -32,7 +32,7 @@ public class InventoryItemRepresentation extends ResourceSupport {
 	}
 
 
-	public InventoryItemRepresentation(String externalReferenceId, String name, String description, int price,
+	public InventoryItemRepresentation(String externalReferenceId, String name, String description, double price,
 			int quantityInStock) throws ApplicationException {
 		super();
 		this.externalReferenceId = externalReferenceId;
@@ -65,7 +65,7 @@ public class InventoryItemRepresentation extends ResourceSupport {
 	}
 
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 

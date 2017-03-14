@@ -22,7 +22,8 @@ public class InventoryItemSurgePricingModel implements PricingModel {
 	private InventoryItemAccessQuery iiaQuery;
 	private InventoryItemQuery iiQuery;
 	
-	private int surgePriceModelAccessTimeMins = 60;
+	//private int surgePriceModelAccessTimeMins = 60;
+	private int surgePriceModelAccessTimeMins = 10;
 	private int surgePriceModelViewsPerAccessTimeThreshold = 10;
 
 
@@ -72,7 +73,10 @@ public class InventoryItemSurgePricingModel implements PricingModel {
 		
 		//Step 2
 		Map<String, ItemPrice> basePriceMap = Maps.newHashMap();
-		List<InventoryItemBasePriceResult> basePrices = iiQuery.findInventoryItemBasePricesForItemRefIds(iiRefIds);
+		List<InventoryItemBasePriceResult> basePrices = Lists.newArrayList();
+		if (!iiRefIds.isEmpty()){
+			basePrices = iiQuery.findInventoryItemBasePricesForItemRefIds(iiRefIds);
+		}
 		for (InventoryItemBasePriceResult basePriceResult : basePrices) {
 			basePriceMap.put(basePriceResult.getRefId(), new ItemPrice( basePriceResult.getBasePrice() ));
 		}

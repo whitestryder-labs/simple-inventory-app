@@ -26,7 +26,9 @@ public class ItemPrice {
 	public ItemPrice(double price) {
 		super();
 		MathContext mc = new MathContext(2, RoundingMode.HALF_UP);
-		this.price = new BigDecimal(price).round(mc).doubleValue();
+		BigDecimal original = new BigDecimal(price);
+		BigDecimal scaled = original.setScale(2, BigDecimal.ROUND_HALF_UP);
+		this.price = scaled.doubleValue();
 	}
 
 	/**

@@ -13,6 +13,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.whitestryder.labs.app.activity.inventory.CreateInventoryItem;
 import org.whitestryder.labs.app.activity.inventory.CreateInventoryItemImpl;
+import org.whitestryder.labs.app.activity.inventory.GetInventoryItemList;
+import org.whitestryder.labs.app.activity.inventory.GetInventoryItemListImpl;
 import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItem;
 import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItemImpl;
 import org.whitestryder.labs.app.support.AuthenticatedUserContextService;
@@ -84,17 +86,26 @@ public class Config {
 	}
 	
 	
-	@Bean
-	public GetSingleInventoryItem getSingleInventoryItem(){
-		return new GetSingleInventoryItemImpl(
-				inventoryItemAccessRepository, inventoryItemQuery);
-	}
-	
-
 
 	@Bean
 	public PricingModel surgePricingModel(){
 		return new InventoryItemSurgePricingModel(inventoryItemAccessQuery, inventoryItemQuery);
 	}
+	
+	
+	@Bean
+	public GetSingleInventoryItem getSingleInventoryItem(PricingModel pricingModel){
+		return new GetSingleInventoryItemImpl(
+				inventoryItemAccessRepository, inventoryItemQuery, pricingModel);
+	}
 
+
+
+	
+	@Bean
+	public GetInventoryItemList getInventoryItemList(PricingModel pricingModel){
+		return new GetInventoryItemListImpl(inventoryItemQuery, pricingModel);
+	}
+	
+	
 }

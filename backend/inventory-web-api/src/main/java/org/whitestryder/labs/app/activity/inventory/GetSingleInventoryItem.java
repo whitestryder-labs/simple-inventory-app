@@ -1,7 +1,7 @@
 package org.whitestryder.labs.app.activity.inventory;
 
+import org.whitestryder.labs.app.activity.inventory.model.InventoryItemDecorator;
 import org.whitestryder.labs.app.support.ApplicationException;
-import org.whitestryder.labs.core.InventoryItem;
 
 /**
  * Provide an interface for getting a single InventoryItem.
@@ -14,6 +14,6 @@ public interface GetSingleInventoryItem {
 	 * @param refId the ref id
 	 * @return the inventory item
 	 */
-	InventoryItem execute(String refId) throws ApplicationException;
+	InventoryItemDecorator execute(String refId) throws ApplicationException;
 	
 }

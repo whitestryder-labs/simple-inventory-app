@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.whitestryder.labs.api.model.InventoryItemRepresentation;
 import org.whitestryder.labs.api.model.InventoryItems;
 import org.whitestryder.labs.app.activity.inventory.CreateInventoryItem;
+import org.whitestryder.labs.app.activity.inventory.GetInventoryItemList;
 import org.whitestryder.labs.app.activity.inventory.GetSingleInventoryItem;
+import org.whitestryder.labs.app.activity.inventory.model.InventoryItemDecorator;
 import org.whitestryder.labs.app.support.ApplicationException;
-import org.whitestryder.labs.app.support.InventoryItemQuery;
 import org.whitestryder.labs.core.InventoryItem;
 
 import com.google.common.collect.Lists;
@@ -35,10 +36,12 @@ public class InventoryController {
 	/** The create inventory item activity. */
 	private CreateInventoryItem createInventoryItem;
 	
+	/** The get single inventory item. */
 	private GetSingleInventoryItem getSingleInventoryItem;
-    
-    /** The inventory item query. */
-    private InventoryItemQuery inventoryItemQuery;
+
+	/** The get inventory item list. */
+	private GetInventoryItemList getInventoryItemList;
+	
 
 	
 	
@@ -46,17 +49,17 @@ public class InventoryController {
 	 * Instantiates a new inventory controller.
 	 *
 	 * @param createInventoryItemActivity the create inventory item activity
-	 * @param inventoryItemQuery the inventory item query
 	 * @param getSingleInventoryItem the get single inventory item
+	 * @param getInventoryItemList the get inventory item list
 	 */
 	@Autowired
 	public InventoryController(
 			CreateInventoryItem createInventoryItemActivity,
-			InventoryItemQuery inventoryItemQuery,
-			GetSingleInventoryItem getSingleInventoryItem){
+			GetSingleInventoryItem getSingleInventoryItem,
+			GetInventoryItemList getInventoryItemList){
 		this.createInventoryItem = createInventoryItemActivity;
-		this.inventoryItemQuery = inventoryItemQuery;
 		this.getSingleInventoryItem = getSingleInventoryItem;
+		this.getInventoryItemList = getInventoryItemList;
 	}
 	
 	
@@ -80,17 +83,17 @@ public class InventoryController {
     @RequestMapping(path = "/api/inventory-item", method = RequestMethod.GET)
     public ResponseEntity<InventoryItems> getInventoryItems() throws ApplicationException {
     	
-    	List<InventoryItem> items = inventoryItemQuery.findAll();
+    	List<InventoryItemDecorator> items = getInventoryItemList.execute();
     	
     	List<InventoryItemRepresentation> itemsRepList = Lists.newArrayList();
-    	for (InventoryItem item : items) {
+    	for (InventoryItemDecorator item : items) {
     		
     		InventoryItemRepresentation rep = 
     				new InventoryItemRepresentation(
     	    				item.getExternalReferenceId(),
     	    				item.getName(),
     	    				item.getDescription(),
-    	    				item.getPrice(),
+    	    				item.getCurrentPrice(),
     	    				item.getQuantityInStock());
     		
     		
@@ -117,14 +120,14 @@ public class InventoryController {
     @RequestMapping(path = "/api/inventory-item/{refId}", method = RequestMethod.GET)
     public ResponseEntity<InventoryItemRepresentation> getInventoryItem(@PathVariable String refId) throws ApplicationException {
         
-    	InventoryItem item = getSingleInventoryItem.execute(refId);
+    	InventoryItemDecorator item = getSingleInventoryItem.execute(refId);
     	
     	InventoryItemRepresentation rep = 
 				new InventoryItemRepresentation(
 	    				item.getExternalReferenceId(),
 	    				item.getName(),
 	    				item.getDescription(),
-	    				item.getPrice(),
+	    				item.getCurrentPrice(),
 	    				item.getQuantityInStock());
     	
     	return ResponseEntity

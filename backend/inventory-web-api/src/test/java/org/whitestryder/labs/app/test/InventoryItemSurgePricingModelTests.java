@@ -88,6 +88,8 @@ public class InventoryItemSurgePricingModelTests {
 		
 		Map<String, ItemPrice> pricingMap = pricingModel.calcPrices();
 		
+		//NOTE: This test assumes that the surge price percent increase is 10%, it is
+		//hard-coded here, if we change the configuration of the pricing model this test will need to change.
 		Assert.assertTrue(pricingMap.containsKey(testInventoryItemRefId));
 		Assert.assertEquals(basePrice + basePrice * 0.10, pricingMap.get(testInventoryItemRefId).getPrice(), priceDiffTolerance);
 		

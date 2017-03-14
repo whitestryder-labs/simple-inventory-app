@@ -257,9 +257,8 @@ public class InventoryItem {
 	public InventoryItemAccess createAccessRecord() {
 		return createAccessRecord("anonymous");
 	}
-	
-	
-	
+
+
 	
 	
 }
