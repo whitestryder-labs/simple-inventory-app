@@ -113,5 +113,5 @@ A simple web-based inventory application that exposes a REST API for customers t
            - you can pass it along to a 3rd party application, for example, a mobile application
          5. It is more secure:
            - ??
-        - Reference: [Token-based Statless Authentication](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
+        - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
     
