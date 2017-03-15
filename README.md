@@ -42,18 +42,19 @@ A simple web-based inventory application that exposes a REST API for customers t
      
 #### 4. *Explanations*:
 ##### a. *Application*:
-   - How it is set up:
-     - Began from various Spring Boot Gradle-based sample applications and setup a skeleton application with working Gradle build configuration
-   - Imported Gradle project into Eclipse (Neon) and further broken down the application into different software layers
-     - How it was built:
-     - How the Surge Pricing Model was designed:
+ - How it is set up:
+  - Began from various Spring Boot Gradle-based sample applications and setup a skeleton application with working Gradle build configuration
+  - Imported Gradle project into Eclipse (Neon) and further broken down the application into different software layers
+ - How it was built:
+  - Built iteratively 1 feature at a time test => code => test => code cycle
+ - How the Surge Pricing Model was designed:
        - The pricing model was applied by separating it into two parts:
         - Part 1: Store each access of an Inventory Item with a timestamp in an Inventory Item Access record
         - Part 2: When retrieving an Inventory Item for display calculate the price using the pricing model
          - The way this is done is first the Inventory Item(s) are retrieved from the database
          - Then an aggregation query is performed on the Inventory Item Access records to see how many accesses (views) have been requested grouped by inventory item and converted into a item access dictionary with key={InventoryItem.externalReferenceId}, value={count of accesses in past 'x' minutes}
          - The pricing model implementation then iterates over the requested Inventory Item(s) and dervies a new price if the item access dictionary indicates a count that reaches the threshold
-     - The type of architecture chosen:
+ - The type of architecture chosen:
       - Roughly follows ["The Clean Architecture"](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) AKA Onion Architecture
       - for simplicity the layers are manifested in different packages initially, not separate Java libraries
       - Sofware Layers in order of dependency:
