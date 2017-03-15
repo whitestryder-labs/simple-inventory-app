@@ -3,6 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Card from 'material-ui/Card';
 import { hashHistory } from 'react-router'
+import './LoginForm.css';
 
 
 class LoginForm extends Component {
@@ -11,8 +12,10 @@ class LoginForm extends Component {
     super(props);
 
     this.state = {
-        errors: {},
-        user: {}
+        errors: {
+          summary: "",
+        },
+        user : {}
     };
   }
 
@@ -27,8 +30,6 @@ class LoginForm extends Component {
     evt.preventDefault();
     
     console.log("Attempting to login with username=" + formData.username);
-
-
 
     var requestBody = {
       "username" : formData.username,
@@ -49,7 +50,14 @@ class LoginForm extends Component {
             
             if (response.status !== 200) {  
                 console.log('Looks like there was a problem. Status Code: ' +  
-                response.status);  
+                response.status);
+                sessionStorage.removeItem("authToken");
+                sessionStorage.removeItem("username");
+                this.setState({
+                    errors : {
+                      summary: "Login failed"
+                    }
+                }); 
                 return;  
             }
 
@@ -58,23 +66,29 @@ class LoginForm extends Component {
             response.json().then(
                 data =>  {  
                 console.log(data);
-                this.setState({
-                     user : {
-                       authToken: authToken
-                     }
-                });
-                //console.log("authToken: " + this.state.user.authToken);
                 if (authToken && data.authenticated && data.username){
                   sessionStorage.setItem("authToken", authToken);
                   sessionStorage.setItem("username", data.username);
                   hashHistory.push('/inventory-listing');
                 } else {
+                  sessionStorage.removeItem("authToken");
+                  sessionStorage.removeItem("username");
+                  this.setState({
+                    errors : {
+                      summary: "Login failed"
+                    }
+                  });
                   console.log('Login failed.');
                 }
         });
 
     })
-    .catch(function(err) {  
+    .catch(function(err) {
+        this.setState({
+                      errors : {
+                        summary: err
+                      }
+                    });
         console.log('Fetch Error :-S', err);  
     });
   }
@@ -91,7 +105,7 @@ class LoginForm extends Component {
         <form action="" onSubmit={this.onSubmit}>
           <h2 className="card-heading">Login</h2>
 
-          {this.state.errors.summary && <p className="error-message">{this.state.errors.summary}</p>}
+          {this.state.errors.summary !== "" && <p className="error-message">{this.state.errors.summary}</p>}
 
           <div className="field-line">
             <TextField

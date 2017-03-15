@@ -13,20 +13,23 @@ class App extends Component {
 
     this.state = {
       open: false,
-      username: "",
-      authenticated: false
+      username: function() {
+        var username = sessionStorage.getItem('username');
+        if (username == null){
+          return "";
+        } else {
+          return username;
+        }
+    },
+      authenticated: false,
+      hasAuthToken : function() {
+            var token = sessionStorage.getItem('authToken');
+            return token != null;
+        }
     };
   }
 
-  checkHasAuthToken() {
-      var token = sessionStorage.getItem('authToken');
-      if (token != null){
-        this.setState({
-          username:  sessionStorage.getItem('username')
-        });
-      }
-      return token != null;
-  }
+  
 
   handleLeftIconButtonClick = () => this.setState({open: !this.state.open});
 
@@ -52,13 +55,13 @@ class App extends Component {
               />
               <MenuItem onTouchTap={this.handleLeftMenuClose}><Link to="/inventory-listing">Inventory Listing</Link></MenuItem>
               {
-                this.state.hasAuthToken && 
+                this.state.hasAuthToken() && 
                 <MenuItem onTouchTap={this.handleLeftMenuClose}>
-                  <Link to="/logout">Logout {this.state.username}</Link>
+                  <Link to="/logout">Logout ({this.state.username()})</Link>
                 </MenuItem>
               }
               {
-                !this.state.hasAuthToken && 
+                !this.state.hasAuthToken() && 
                 <MenuItem onTouchTap={this.handleLeftMenuClose}>
                   <Link to="/login">Login</Link>
                 </MenuItem>

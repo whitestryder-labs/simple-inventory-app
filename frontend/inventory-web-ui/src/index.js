@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import App from './components/app/App'
 import './index.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -19,6 +19,7 @@ const Main = () => (
   <MuiThemeProvider>
       <Router history={hashHistory}>
       <Route path="/" component={App} >
+        <IndexRoute component={InventoryListing} />
         <Route path="/inventory-listing" component={InventoryListing}/>
         <Route path="/login" component={LoginForm}/>
         <Route path="/logout" component={LogoutSuccess}/>
