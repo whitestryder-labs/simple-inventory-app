@@ -87,6 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        .antMatchers(HttpMethod.GET, "/api/inventory-item").permitAll()
 	        .antMatchers(HttpMethod.GET, "/api/inventory-item/**/*").permitAll()
 	        .antMatchers(HttpMethod.PUT, "/api/inventory-item/**/*").hasAuthority("ROLE_ADMIN")
+	        .antMatchers(HttpMethod.POST, "/api/inventory-item").hasAuthority("ROLE_ADMIN")
 	        
 	        // All other requests need to be authenticated
 	        .anyRequest().authenticated().and()
