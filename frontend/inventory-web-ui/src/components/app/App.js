@@ -10,7 +10,22 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false};
+
+    this.state = {
+      open: false,
+      username: "",
+      authenticated: false
+    };
+  }
+
+  checkHasAuthToken() {
+      var token = sessionStorage.getItem('authToken');
+      if (token != null){
+        this.setState({
+          username:  sessionStorage.getItem('username')
+        });
+      }
+      return token != null;
   }
 
   handleLeftIconButtonClick = () => this.setState({open: !this.state.open});
@@ -36,6 +51,18 @@ class App extends Component {
                 onLeftIconButtonTouchTap={this.handleLeftIconButtonClick}
               />
               <MenuItem onTouchTap={this.handleLeftMenuClose}><Link to="/inventory-listing">Inventory Listing</Link></MenuItem>
+              {
+                this.state.hasAuthToken && 
+                <MenuItem onTouchTap={this.handleLeftMenuClose}>
+                  <Link to="/logout">Logout {this.state.username}</Link>
+                </MenuItem>
+              }
+              {
+                !this.state.hasAuthToken && 
+                <MenuItem onTouchTap={this.handleLeftMenuClose}>
+                  <Link to="/login">Login</Link>
+                </MenuItem>
+              }
             </div>
           </Drawer>
           <Container fluid={true} className="content-container">

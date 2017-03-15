@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import ActionRefresh from 'material-ui/svg-icons/navigation/refresh';
-import {GridList, GridTile} from 'material-ui/GridList';
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardTitle, CardText, CardActions} from 'material-ui/Card';
 import Container from 'muicss/lib/react/container';
@@ -84,7 +83,6 @@ componentWillMount() {
                 this.setState({
                     itemsResult: this.itemResultsFromInventoryItems(data)
                 });
-                console.log(this.state.itemsResult);
         });
     })
     .catch(function(err) {  
