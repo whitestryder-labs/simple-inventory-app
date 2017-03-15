@@ -37,7 +37,9 @@ A simple web-based inventory application that exposes a REST API for customers t
      - API operations are tested using RestTemplate
      - Surge Pricing Model
      - the Spring Data JPA queries and repositories
-   - Test technologies used: JUnit, Spring Test, Spring Dev Tools, and RestTemplate
+   - Automatable Test technologies used: JUnit, Spring Test, Spring Dev Tools, and RestTemplate
+   - Other test technologies used:
+     - PostMan REST Client Chrome extension (could also use 'curl')
      
      
 #### 4. *Explanations*:
