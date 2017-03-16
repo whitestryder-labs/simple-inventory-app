@@ -13,7 +13,10 @@ Provides a simple and easy to use web-based UI for accessing the inventory-web-a
     - Material UI
     - Material UI CSS
 
-### Development tools usesd
+### Development tools used
     - IDE: Visual Studio Code
     - Development Server: Webpack
     - JSX -> JS compilation: Babel
+
+### Design
+    - Uses Responsive UI Design so that it works well on both mobile, tablet, and desktop form factors
