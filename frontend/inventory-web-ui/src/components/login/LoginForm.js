@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Card from 'material-ui/Card';
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
+import Notifier from '../notify/Notifier';
 import './LoginForm.css';
 
 
@@ -48,16 +49,17 @@ class LoginForm extends Component {
     .then(     
         response => {
             
-            if (response.status !== 200) {  
-                console.log('Looks like there was a problem. Status Code: ' +  
-                response.status);
+            if (response.status !== 200) {
+                var errMsg = 'There was a problem authenticating the user. Status Code: ' +  response.status;
+                console.log(errMsg);
                 sessionStorage.removeItem("authToken");
                 sessionStorage.removeItem("username");
                 this.setState({
                     errors : {
-                      summary: "Login failed"
-                    }
-                }); 
+                      summary: errMsg
+                  }
+                });
+                Notifier.error(errMsg);
                 return;  
             }
 
@@ -69,16 +71,19 @@ class LoginForm extends Component {
                 if (authToken && data.authenticated && data.username){
                   sessionStorage.setItem("authToken", authToken);
                   sessionStorage.setItem("username", data.username);
+                  Notifier.info("Login successful.");
                   hashHistory.push('/inventory-listing');
                 } else {
                   sessionStorage.removeItem("authToken");
                   sessionStorage.removeItem("username");
+                  var errMsg = "Login failed.";
                   this.setState({
                     errors : {
-                      summary: "Login failed"
+                      summary: errMsg
                     }
                   });
-                  console.log('Login failed.');
+                  console.log(errMsg);
+                  Notifier.error(errMsg);
                 }
         });
 
@@ -89,7 +94,8 @@ class LoginForm extends Component {
                         summary: err
                       }
                     });
-        console.log('Fetch Error :-S', err);  
+        console.log('Fetch Error :-S', err);
+        Notifier.error(err);
     });
   }
 

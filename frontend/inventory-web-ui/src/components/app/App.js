@@ -5,6 +5,8 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router'
 import Container from 'muicss/lib/react/container';
+import IconButton from 'material-ui/IconButton';
+import IconLock from 'material-ui/svg-icons/action/lock';
 
 
 class App extends Component {
@@ -70,9 +72,21 @@ class App extends Component {
             </div>
           </Drawer>
           <Container fluid={true} className="content-container">
-            <p>
-              Powered by <a href="https://github.com/whitestryder-labs/simple-inventory-app/tree/master/backend/inventory-web-api" >inventory-web-api.</a>
-            </p>
+            <div className="horiz">
+              <div className="horiz">
+                <p>
+                  Powered by <a href="https://github.com/whitestryder-labs/simple-inventory-app/tree/master/backend/inventory-web-api" >inventory-web-api.</a>
+                </p>
+              </div>
+              <div className="horiz">
+                {
+                  this.state.hasAuthToken() && 
+                  <IconButton tooltip="User is Authenticated">
+                    <IconLock />
+                  </IconButton>
+                }
+              </div>
+            </div>
             {this.props.children}
           </Container>
       </div>

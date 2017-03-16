@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Notifier from '../notify/Notifier';
 
 
 class LogoutSuccess extends Component {
@@ -14,9 +15,11 @@ class LogoutSuccess extends Component {
   componentWillMount() {
       sessionStorage.removeItem('authToken');
       sessionStorage.removeItem('username');
+      var msg = "Logout Successful.";
       this.setState({
-            message: "Logout successful."
+            message: msg
       });
+      Notifier.info(msg);
   }
 
   render() {
