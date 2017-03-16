@@ -71,7 +71,9 @@ buyItem = (itemLinks, itemRefId) =>
             response.json().then(
                 data => {  
                     console.log(data);
-                    var msg = "Item successfully purchased";
+                    var msg = "Item '" + data.name + "'"
+                        + " and refId '" + data.refId + "'"
+                        + " successfully purchased for $" + data.purchasePrice;
                     console.log(msg);
                     Notifier.info(msg);
                     this.refreshItems();
