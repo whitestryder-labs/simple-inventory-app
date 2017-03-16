@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import Card from 'material-ui/Card';
-import { hashHistory } from 'react-router'
 
 
 class LogoutSuccess extends Component {

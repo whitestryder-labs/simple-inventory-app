@@ -5,6 +5,9 @@ import ActionRefresh from 'material-ui/svg-icons/navigation/refresh';
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardTitle, CardText, CardActions} from 'material-ui/Card';
 import Container from 'muicss/lib/react/container';
+// import 'toastr/build/toastr.min.css'
+// import toastr from 'toastr/toastr';
+import Notifier from '../notify/Notifier';
 import './InventoryListing.css';
 
 
@@ -49,7 +52,9 @@ componentWillMount() {
         result.list.push(
             {
                 name: item.name,
-                description: item.description
+                description: item.description,
+                price: item.price,
+                quantityInStock: item.quantityInStock
             }
         )
      });
@@ -69,9 +74,10 @@ componentWillMount() {
     })
     .then(  
         response => {
-            if (response.status !== 200) {  
-                console.log('Looks like there was a problem. Status Code: ' +  
-                response.status);  
+            if (response.status !== 200) {
+                var errMsg = 'Unable to retrieve inventory items. Status Code: ' + response.status;
+                console.log(errMsg);
+                Notifier.error(errMsg);
                 return;  
             }
 
@@ -83,10 +89,12 @@ componentWillMount() {
                 this.setState({
                     itemsResult: this.itemResultsFromInventoryItems(data)
                 });
+                Notifier.info("Retrieved " + this.state.itemsResult.count + " items ", "success", 5000, "green");
         });
     })
-    .catch(function(err) {  
-        console.log('Fetch Error :-S', err);  
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+        Notifier.error("Unable to retrieve inventory items, reason: " + err, "error", 5000, "red");
     });
   }
   
@@ -95,7 +103,6 @@ componentWillMount() {
   render() {
     return (
         <Container fluid={true}>
-            
             <h1>Inventory Listing</h1>
 
             <div className="horiz">
@@ -114,7 +121,15 @@ componentWillMount() {
                         <Card>
                             <CardTitle title={row.name} />
                             <CardText>
-                                {row.description}
+                                <div>{row.description}</div>
+                                <div className="horiz">
+                                    <div  className="horiz">
+                                        <label className="item-label price">Price:</label><span>${row.price}</span>
+                                    </div>
+                                    <div className="horiz">
+                                        <label className="item-label quantity">Quantity In-stock:</label><span>{row.quantityInStock}</span>
+                                    </div>
+                                </div>
                             </CardText>
                             <CardActions>
                             <FlatButton label="View Details" />

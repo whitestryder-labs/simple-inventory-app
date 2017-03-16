@@ -5,7 +5,7 @@
 [x] Allow purchase of InventoryItem, need to update InventoryItem quantityInStock
 
 
-[ ] add built-in test inventory items
+[x] add built-in test inventory items
 [ ] add example requests for each operation
 [x] add postman and curl as two of the testing tools
 [ ] add pop ups for details and buy item if not implemented

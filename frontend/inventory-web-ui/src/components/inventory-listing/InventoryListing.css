@@ -5,3 +5,16 @@ div.horiz {
 h3.horiz {
     display: inline-block;
 }
+
+.item-label {
+    font-weight: bold;
+    padding: 20px;
+}
+
+.price {
+    color: green;
+}
+
+.quantity {
+    padding-left: 20px;
+}
