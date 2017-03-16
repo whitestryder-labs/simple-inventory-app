@@ -38,8 +38,8 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
       
 |Operation | HTTP Method | Relative URL Path  | Requires Authentication | Requires Admin Role |
 |:---------|:-------------:|:------------------|:------------------------:|:---------------------------:|
-Check if service is available |GET| /health | No | No |
 Get hypermedia links to top-level resources provided by this service |GET| /api | No | No |
+Check if service is available |GET| /health | No | No |
 Get the inventory listing |GET| /api/inventory-item | No | No |
 Add an item to the inventory |POST| /api/inventory-item | No | No |
 Get a specific inventory item |GET| /api/inventory-item/{id} | No | No |
