@@ -47,6 +47,12 @@ Create an authentication token (login)|POST| /auth/token | No | No |
 Buy an item from the inventory |POS | /api/inventory-item/{refId}/purchase | Yes | No |
 Update the inventory item with refId={refId} |PUT| /api/inventory-item/{refId} | Yes | Yes |
 
+2. Test Data
+   - To support out-of-the-box demos the service comes with 3 sample users built-in:
+     - sbrooke/password
+     - amagi/password
+     - admin/admin
+   - Also, the service is populated with 4 inventory items
 		
 #### 5. How to setup development in Eclipse
 1. Install "Buildship Gradle Integration for Eclipse" from Eclipse Marketplace
