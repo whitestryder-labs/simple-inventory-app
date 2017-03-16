@@ -4,36 +4,36 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
  
 
 ## Table of Contents:
-### 1. How to build
-### 2. How to test
-### 3. How to run
-### 4. How to use
-### 5. How to setup development in Eclipse
-### 6. How to setup development in IDEA IntelliJ
-### Appendix A. Design Decisions
+#### 1. How to build
+#### 2. How to test
+#### 3. How to run
+#### 4. How to use
+#### 5. How to setup development in Eclipse
+#### 6. How to setup development in IDEA IntelliJ
+#### Appendix A. Design Decisions
 
 ----------------------------------------------------------------------
-###1. How to build:
+#### 1. How to build:
 1. Build using the Gradle Wrapper
    - cmdline> ./gradlew build
 2. Build Without using the Gradle Wrapper
    - Download and install Gradle 2.3+ manually
    - cmdline> gradle build
 
-###2. How to test:
+#### 2. How to test:
 1. Using the Gradle Wrapper
    - cmdline> ./gradlew test
 2. Without using the Gradle Wrapper
    - cmdline> gradle test
  
-###3. How to run:
+#### 3. How to run:
 1. Using the Gradle Wrapper
    - cmdline> ./gradlew bootRun
 2. Without using the Gradle Wrapper
    - cmdline> gradle bootRun
 
 	
-###4. How to use
+#### 4. How to use
 1. REST API
       
 |Operation | HTTP Method | Relative URL Path  | Requires Authentication | Requires Admin Role |
@@ -48,18 +48,18 @@ Buy an item from the inventory |POS | /api/inventory-item/{refId}/purchase | Yes
 Update the inventory item with refId={refId} |PUT| /api/inventory-item/{refId} | Yes | Yes |
 
 		
-### 5. How to setup development in Eclipse
+#### 5. How to setup development in Eclipse
 1. Install "Buildship Gradle Integration for Eclipse" from Eclipse Marketplace
 2. open project in Eclipse as "Existing Gradle Project"
  
 
-###6. How to setup development in IDEA IntelliJ
+#### 6. How to setup development in IDEA IntelliJ
 1. cmdline> gradle idea
 2. open project in IntelliJ
 		
  
 
-###Appendix A. Design Decisions:
+#### Appendix A. Design Decisions:
 1. Language: Java 8 - a good multi-purpose modern language
 2. Frameworks:
    1. Spring Boot - provides a good application framework for cross-cutting application concerns
