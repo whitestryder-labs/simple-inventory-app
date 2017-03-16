@@ -93,7 +93,8 @@ public class InventoryControllerTests {
         
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assert.assertNotNull(items);
-        Assert.assertEquals(0, items.getItems().size());
+        //NOTE: This takes into account the 4 test data items added
+        Assert.assertEquals(4, items.getItems().size());
     }
     
     
@@ -116,7 +117,8 @@ public class InventoryControllerTests {
         
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assert.assertNotNull(items);
-        Assert.assertEquals(1, items.getItems().size());
+        //NOTE: This takes into account the 4 test data items added
+        Assert.assertEquals(5, items.getItems().size());
     }
     
     

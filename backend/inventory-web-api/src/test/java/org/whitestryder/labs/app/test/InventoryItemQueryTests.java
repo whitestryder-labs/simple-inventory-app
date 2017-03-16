@@ -40,7 +40,8 @@ public class InventoryItemQueryTests {
 		List<InventoryItem> itemsFound = query.findAll();
 		
 		Assert.assertNotNull(itemsFound);
-		Assert.assertEquals(0,  itemsFound.size());
+		//NOTE: This takes into account the 4 test data items added
+		Assert.assertEquals(4,  itemsFound.size());
 	}
 	
 	
