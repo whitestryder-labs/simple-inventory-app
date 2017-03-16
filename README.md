@@ -56,8 +56,8 @@ A simple web-based inventory application that exposes a REST API for customers t
      - The pricing model was applied by separating it into two parts:
        - Part 1: Store each access of an Inventory Item with a timestamp in an Inventory Item Access record
        - Part 2: When retrieving an Inventory Item for display calculate the price using the pricing model
-        - The way this is done is first the Inventory Item(s) are retrieved from the database
-        - Then an aggregation query is performed on the Inventory Item Access records to see how many accesses (views) have been requested grouped by inventory item and converted into a item access dictionary with key={InventoryItem.externalReferenceId}, value={count of accesses in past 'x' minutes}
+         - The way this is done is first the Inventory Item(s) are retrieved from the database
+         - Then an aggregation query is performed on the Inventory Item Access records to see how many accesses (views) have been requested grouped by inventory item and converted into a item access dictionary with key={InventoryItem.externalReferenceId}, value={count of accesses in past 'x' minutes}
          - The pricing model implementation then iterates over the requested Inventory Item(s) and dervies a new price if the item access dictionary indicates a count that reaches the threshold
  - The type of architecture chosen:
    - Roughly follows ["The Clean Architecture"](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) AKA Onion Architecture
