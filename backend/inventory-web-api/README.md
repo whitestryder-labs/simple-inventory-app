@@ -31,6 +31,8 @@ A simple web-based inventory service that exposes a REST API.  Allows any anonym
    - cmdline> ./gradlew bootRun
 2. Without using the Gradle Wrapper
    - cmdline> gradle bootRun
+3. Service API is available by default at: http://localhost:8181/api
+   - see below REST API table for supported endpoints
 
 	
 #### 4. How to use
