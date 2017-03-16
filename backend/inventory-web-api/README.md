@@ -65,6 +65,10 @@ Update the inventory item with refId={refId} |PUT| /api/inventory-item/{refId} |
    1. Spring Boot - provides a good application framework for cross-cutting application concerns
    2. Spring Security - provides security framework
    3. Spring MVC - provides web API framework
+   4. H2 File and in-memory relational database is used to store data
+      - Integration tests use the in-memory mode so that they start from a fresh and clean database each time
+      - Service itself uses H2's file-based database storage mode, default location is in a folder called "simple_inventory_db_instance_h2" in ${user.home}
+      - Through configuration the service supports any JDBC compatible RDBMS system that has a Java JDBC driver
 
 3. Development Environment Tools
    1. Build tool: Gradle
