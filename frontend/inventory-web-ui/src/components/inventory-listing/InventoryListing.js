@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
 import ActionRefresh from 'material-ui/svg-icons/navigation/refresh';
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardTitle, CardText, CardActions} from 'material-ui/Card';
@@ -14,17 +15,25 @@ import './InventoryListing.css';
 class InventoryListing extends Component {
 
 
-
   constructor(props) {
     super(props);
 
     this.state = {
+      open: false,
       refreshing: false,
       itemsResult: {
           took: 0,
           hits: 0,
           list: []
-      }
+      },
+      viewItemDialogActions: [
+        <RaisedButton
+            label="Close"
+            primary={true}
+            onTouchTap={this.handleClose}
+        />
+      ],
+      currentItemDetails: {}
     };
   }
 
@@ -84,10 +93,58 @@ buyItem = (itemLinks, itemRefId) =>
         Notifier.error("Unable to buy inventory item, reason: " + err);
     });
 
+}
 
 
+  handleOpen = (itemDetails) => {
+    this.setState(
+        {
+            open: true,
+            currentItemDetails: itemDetails
+        });
+  };
+
+  handleClose = () => {
+    this.setState({open: false, currentItemDetails: {}});
+  };
+
+viewItemDetails = (itemLinks, itemRefId) =>
+{
+    var itemDetailsUrl = itemLinks["self"].href;
+    console.log("Viewing item details: " + itemRefId + ", itemDetailsUrl: " + itemDetailsUrl);
+
+    fetch(itemDetailsUrl, {
+        method: 'GET',  
+        headers: {
+        "Accept" : "application/json",
+        "X-Forwarded-Host" : window.location.hostname + ":" + window.location.port
+      }
+    })
+    .then(  
+        response => {
+            if (response.status !== 200) {
+                var errMsg = 'There was a problem viewing this item. Status Code: ' +  response.status;
+                console.log(errMsg);
+                Notifier.error(errMsg);
+                return;  
+            }
 
 
+            // Examine the text in the response  
+            response.json().then(
+                data => {  
+                    console.log(data);
+                    
+                    this.handleOpen(data);
+                    
+                    //Refresh items because the price may have changed
+                    this.refreshItems();
+        });
+    })
+    .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+        Notifier.error("Unable to buy inventory item, reason: " + err);
+    });
 
 }
 
@@ -168,7 +225,7 @@ buyItem = (itemLinks, itemRefId) =>
 
             <div className="horiz">
                 <div className="horiz">
-                    <IconButton tooltip="Refresh items" onClick={this.refreshItems}>
+                    <IconButton tooltip="Refresh items" onTouchTap={this.refreshItems}>
                         <ActionRefresh />
                     </IconButton>
                 </div>
@@ -176,6 +233,53 @@ buyItem = (itemLinks, itemRefId) =>
 
             </div>
 
+            <Dialog ref="itemDetailDialog"
+                    title="Inventory Item Details"
+                    modal={true}
+                    open={this.state.open}
+                    actions={this.state.viewItemDialogActions}
+                    >
+                <div>
+                    <div className="horiz">
+                        <label className="item-label">Name:</label>
+                    </div>
+                    <div className="horiz">
+                        <span>{this.state.currentItemDetails.name}</span>
+                    </div>
+                </div>
+                <div>
+                    <div className="horiz">
+                        <label className="item-label">Description:</label>
+                    </div>
+                    <div className="horiz">
+                        <span>{this.state.currentItemDetails.description}</span>
+                    </div>
+                </div>
+                <div>
+                    <div className="horiz">
+                        <label className="item-label">Price:</label>
+                    </div>
+                    <div className="horiz">
+                        <span>${this.state.currentItemDetails.price}</span>
+                    </div>
+                </div>
+                <div>
+                    <div className="horiz">
+                        <label className="item-label">Quanity In-stock:</label>
+                    </div>
+                    <div className="horiz">
+                        <span>${this.state.currentItemDetails.quantityInStock}</span>
+                    </div>
+                </div>
+                <div>
+                    <div className="horiz">
+                        <label className="item-label">RefId:</label>
+                    </div>
+                    <div className="horiz">
+                        <span>${this.state.currentItemDetails.externalReferenceId}</span>
+                    </div>
+                </div>
+            </Dialog>
             <List>
                 {this.state.itemsResult.list.map( (row, index) => (
                     <ListItem key={index}>
@@ -193,9 +297,8 @@ buyItem = (itemLinks, itemRefId) =>
                                 </div>
                             </CardText>
                             <CardActions>
-                            <FlatButton label="View Details" />
-                            <RaisedButton label="Buy this item" onClick={() => this.buyItem(row.links, row.refId)}/>
-                            
+                            <FlatButton label="View Details" onTouchTap={() => this.viewItemDetails(row.links, row.refId)}/>
+                            <RaisedButton label="Buy this item" onTouchTap={() => this.buyItem(row.links, row.refId)}/>
                             </CardActions>
                         </Card>
                     </ListItem>
