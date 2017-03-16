@@ -17,8 +17,11 @@ A simple web-based inventory application that exposes a REST API for customers t
   
   
 ### Deliverables
-#### 1. *Runnable System*: The backend service is built with Java 8 and the Spring Framework, more specifically Spring Boot, Spring Data JPA, Spring MVC, Spring HATEOAS, and Spring Security.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
-
+#### 1. *Runnable System*:
+##### Backend:
+ - *inventory-web-api*: A backend service built with Java 8 and the Spring Framework, more specifically Spring Boot, Spring Data JPA, Spring MVC, Spring HATEOAS, and Spring Security.  Instructions for running can be found at [inventory-web-api README](./backend/inventory-web-api/README.md) 
+##### Frontend:
+ - *inventory-web-ui*:  A frontend service built with ReactJS and MaterialUI.  Instructions for running can be found at [inventory-web-ui README](./frontend/inventory-web-ui/README.md) 
 
 #### 2. *API Requests*: The backend service supports the following API requests via HTTP including the two API requirements
    - Retrieve the current inventory (i.e. list of items)
