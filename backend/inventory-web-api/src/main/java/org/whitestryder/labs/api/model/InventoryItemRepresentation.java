@@ -60,7 +60,7 @@ public class InventoryItemRepresentation extends ResourceSupport {
 		
 		this.add(linkTo(methodOn(InventoryController.class).getInventoryItem(externalReferenceId)).withSelfRel());
 		this.add(linkTo(methodOn(InventoryController.class).buyItemFromInventory(externalReferenceId))
-				.withRel(LinkRelType.RELATED.combineWith(LinkRelType.X_BUY)));
+				.withRel(LinkRelType.RELATED.combineWith(LinkRelType.X_BUY, LinkRelType.X_AUTH_REQUIRED)));
 	}
 
 

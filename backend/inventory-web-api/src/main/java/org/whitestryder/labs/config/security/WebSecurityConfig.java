@@ -79,6 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	
 	        // Allow anonymous resource requests
 	        .antMatchers(HttpMethod.GET, "/health").permitAll()
+	        .antMatchers(HttpMethod.GET, "/api").permitAll()
 	        
 	        // Allow anonymous logins
 	        .antMatchers(HttpMethod.POST, "/auth/token").permitAll()

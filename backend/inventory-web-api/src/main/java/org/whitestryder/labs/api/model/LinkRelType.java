@@ -34,7 +34,12 @@ public enum LinkRelType {
 	  X_BUY(
 	  		"x-buy",
 	  		"Non-standard identification of a 'purchase' resource for buying an item"),
-
+	  X_AUTH_REQUIRED(
+	  		"x-auth-required",
+	  		"Non-standard identification resource that requires authentication to access"),
+	  X_AUTH_LOGIN(
+		  		"x-auth-login",
+		  		"Non-standard identification resource that represents an authentication endpoint for login purposes"),
 	 ;
 
 	  

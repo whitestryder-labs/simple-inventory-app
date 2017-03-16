@@ -1,0 +1,17 @@
+[x] Record individual InventoryItem accesses/views
+[x] Calculate price for InventoryItem using surge pricing model
+[x] Use price model to display inventory items
+[x] Use price model to display single inventory item
+[x] Allow purchase of InventoryItem, need to update InventoryItem quantityInStock
+
+
+[ ] add built-in test inventory items
+[ ] add example requests for each operation
+[x] add postman and curl as two of the testing tools
+[ ] add pop ups for details and buy item if not implemented
+[ ] implement view details
+[ ] implement buy item
+[x] fill out a bit of the UI documentation
+[x] add price and quantity in stock to the inventory items cards in the UI 
+[ ] review and update the backend README file
+[x] add root representation
