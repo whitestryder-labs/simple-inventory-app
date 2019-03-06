@@ -35,7 +35,7 @@ A simple web-based inventory application that exposes a REST API for customers t
 
 #### 3. *Unit and Integration Tests*
    - Unit tests are provided for:
-     - Domain Entities: IventoryItem, InventoryItemAccess
+     - Domain Entities: InventoryItem, InventoryItemAccess
    - Integration tests are provided for:
      - API operations are tested using RestTemplate
      - Surge Pricing Model
