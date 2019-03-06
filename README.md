@@ -124,17 +124,17 @@ A simple web-based inventory application that exposes a REST API for customers t
 - Stateless token-based authentication worked as follows:
  - User Requests Access with Username / Password
  - Application validates credentials
-  - Application provides a signed token to the client
-  - Client stores that token and sends it along with every request
-  - Server verifies token and responds with data
-   - Why was this authentication mechanism chosen?
-    - Scalability: This mechanism uses much less memory on the server because no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable than stateful session-based approaches 
-    - Simplicity: you don't need to worry about where the user is 'logged-in'
-    - Reusability: It is transportable: you can pass it along to a 3rd party application, for example, a mobile application
-    - Security:
-       - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
-       - tokens expire after a certain configurable amount of time as determined by the server
-       - specific tokens or groups of tokens with the same Authorization grant can be revoked
-    - Standards-based: See ([JSON Web Token draft standard](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html))
-    - I wanted to learn something new
+   - Application provides a signed token to the client
+   - Client stores that token and sends it along with every request
+   - Server verifies token and responds with data
+ - Why was this authentication mechanism chosen?
+   - Scalability: This mechanism uses much less memory on the server because no user session is kept between requests, therefore an increase in the number of users logged in does not lead to a linear increase in server memory per user and hence this type of authentication is more scalable than stateful session-based approaches 
+   - Simplicity: you don't need to worry about where the user is 'logged-in'
+   - Reusability: It is transportable: you can pass it along to a 3rd party application, for example, a mobile application
+   - Security:
+      - since there is no cookie being sent containing a session ID, this helps to prevent CSRF attacks
+      - tokens expire after a certain configurable amount of time as determined by the server
+      - specific tokens or groups of tokens with the same Authorization grant can be revoked
+   - Standards-based: See ([JSON Web Token draft standard](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html))
+     - I wanted to learn something new
   - Reference: [The Ins and Outs of Token Based Authentication](https://scotch.io/tutorials/the-anatomy-of-a-json-web-token)
