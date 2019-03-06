@@ -46,7 +46,7 @@ Get the inventory listing |GET| /api/inventory-item | No | No |
 Add an item to the inventory |POST| /api/inventory-item | No | No |
 Get a specific inventory item |GET| /api/inventory-item/{id} | No | No |
 Create an authentication token (login)|POST| /auth/token | No | No |
-Buy an item from the inventory |POS | /api/inventory-item/{refId}/purchase | Yes | No |
+Buy an item from the inventory |POST| /api/inventory-item/{refId}/purchase | Yes | No |
 Update the inventory item with refId={refId} |PUT| /api/inventory-item/{refId} | Yes | Yes |
 
 2. Test Data
